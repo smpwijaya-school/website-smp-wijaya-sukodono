@@ -52,7 +52,7 @@ Silakan pilih bagian dokumen di bawah ini sesuai dengan kebutuhan Anda:
 ### 2. Bagi Operator Tata Usaha (TU) & Bapak/Ibu Guru
 1. Baca panduan operasional pada [04-sop-operator.md](04-sop-operator.md).
 2. Kunjungi dashboard CMS di `https://app.pagescms.org` dan masuk via tautan email resmi.
-3. Selalu kompres foto kegiatan di `https://tinypng.com` sebelum diunggah ke website agar website tetap cepat dibuka oleh wali murid.
+3. Unggah foto kegiatan langsung melalui Pages CMS. Sistem secara otomatis akan me-resize dan mengompresi foto di latar belakang agar website selalu cepat dibuka oleh wali murid. Anda juga dapat menggunakan tombol **"⚡ Kompres Foto Upload"** di dalam CMS jika diperlukan.
 
 ### 3. Bagi Tim Humas, OSIS, & Media Promosi
 1. Baca panduan aset QR code pada [05-panduan-qr-code.md](05-panduan-qr-code.md).

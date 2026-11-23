@@ -1,6 +1,17 @@
 media:
   input: public/images/uploads
   output: /images/uploads
+  rename: safe
+  categories: [image]
+
+actions:
+  - name: optimize-images
+    label: "⚡ Kompres Foto Upload"
+    workflow: optimize-images.yml
+    confirm:
+      title: "Jalankan Kompresi Foto?"
+      message: "Sistem akan otomatis mengecilkan resolusi dan mengompres foto di public/images/uploads agar website tetap super cepat dan hemat kuota."
+      button: "Mulai Kompresi"
 content:
   - name: berita
     label: "Berita & Pengumuman"

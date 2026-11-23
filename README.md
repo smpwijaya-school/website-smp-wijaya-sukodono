@@ -17,7 +17,8 @@ Dibangun dengan arsitektur **GitOps Static Site** berbasis **Astro + Tailwind CS
   7. `/berita/[id]` — Halaman Baca Berita Lengkap, Share WhatsApp & Berita Terkait
   8. `/spmb` — Informasi SPMB 2026/2027, Alur 4 Langkah, Syarat, Jadwal & FAQ (Auto-redirect dari `/ppdb` via HTTP 301)
   9. `/kontak` — Alamat, Telepon, WhatsApp Tata Usaha & Google Maps Interaktif
-- **Pages CMS Ready**: File konfigurasi `.pages.yml` siap pakai di root repositori.
+- **Pages CMS Ready**: File konfigurasi `.pages.yml` siap pakai di root repositori dengan fitur tombol aksi optimasi media langsung dari dashboard.
+- **Auto Image Optimization**: Setiap foto yang diunggah via Pages CMS otomatis di-resize (maks 1600px) dan dikompresi di latar belakang menggunakan `sharp` via GitHub Actions dan hook build otomatis (`prebuild`).
 - **Standar Desain Modern**: Mengadaptasi ritme layout terstruktur ala SMK YPM 8 Sarirogo dan menurunkan palet warna resmi langsung dari lambang SMP Wijaya Sukodono.
 
 ## Perintah Pengembangan
@@ -29,7 +30,10 @@ npm run dev
 # Memvalidasi tipe data dan skema (type check)
 npm run check
 
-# Membangun output statis untuk produksi
+# Menjalankan kompresi dan optimasi gambar secara mandiri
+npm run optimize:images
+
+# Membangun output statis untuk produksi (otomatis menjalankan kompresi gambar terlebih dahulu)
 npm run build
 
 # Meninjau output build statis

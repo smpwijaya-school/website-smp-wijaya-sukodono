@@ -1,0 +1,46 @@
+name: Optimasi Foto Otomatis
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public/images/uploads/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    name: Kompres Foto Upload
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Jalankan kompresi foto
+        run: node scripts/optimize-uploads.mjs
+
+      - name: Commit & Push foto terkompres
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/images/uploads
+          if git diff --staged --quiet; then
+            echo "Semua foto sudah optimal, tidak ada perubahan."
+          else
+            git commit -m "chore(media): otomatis kompres foto upload [skip ci]"
+            git push
+          fi

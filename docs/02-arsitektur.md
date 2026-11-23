@@ -16,13 +16,17 @@ Sistem mengadopsi pola arsitektur **GitOps Static Site**. Seluruh konten, konfig
        ▼
   [Pages CMS]  (Membaca skema formulir dari file .pages.yml di root repositori)
        │
-       │  2. Klik Save -> otomatis membuat Git Commit berisi file .md / .json / gambar
+       │  2. Klik Save -> otomatis membuat Git Commit berisi file .md / .json / foto
        ▼
 [GitHub Repository]  (Single Source of Truth: kode sumber Astro + konten sekolah)
        │
+       ├─► [GitHub Actions: Auto-Optimize] (Mendeteksi foto baru di public/images/uploads/)
+       │      └─► Menjalankan `sharp`: Resize maks 1600px & kompres 80%
+       │      └─► Commit kembali foto terkompres ke repo [skip ci]
+       │
        │  3. Trigger Webhook otomatis setiap ada push ke branch main
        ▼
-[Cloudflare Pages]  (Menjalankan `npm run build` -> output HTML/CSS/JS statis murni)
+[Cloudflare Pages]  (Menjalankan `npm run build` -> didahului `prebuild` optimasi foto)
        │
        │  4. Distribusi ke Edge CDN Global + HTTPS otomatis
        ▼
@@ -40,9 +44,13 @@ Sistem mengadopsi pola arsitektur **GitOps Static Site**. Seluruh konten, konfig
 
 ```
 website-smp-wijaya-sukodono/
-├── .pages.yml                    # Konfigurasi dashboard admin Pages CMS
+├── .github/                      # Otomatisasi CI/CD & GitHub Actions
+│   └── workflows/
+│       ├── ci.yml                # Validasi type check & build static site
+│       └── optimize-images.yml   # Workflow kompresi & resize foto otomatis
+├── .pages.yml                    # Konfigurasi dashboard admin Pages CMS & Actions
 ├── astro.config.mjs              # Konfigurasi Astro + Tailwind v4 + Sitemap
-├── package.json                  # Dependensi dan build scripts
+├── package.json                  # Dependensi, build scripts, & prebuild hook
 ├── wrangler.jsonc                # Konfigurasi Cloudflare Workers Static Assets & Routing
 ├── wrangler.toml                 # Alternatif konfigurasi Wrangler deployment
 ├── docs/                         # Dokumentasi terstruktur proyek
@@ -52,6 +60,10 @@ website-smp-wijaya-sukodono/
 │   ├── 03-design-system.md       # Spesifikasi desain & visual
 │   ├── 04-sop-operator.md        # SOP pengelolaan & panduan operator TU
 │   └── 05-panduan-qr-code.md     # Panduan aset QR code resmi sekolah
+├── scripts/                      # Skrip utilitas internal
+│   ├── optimize-uploads.mjs      # Skrip optimasi & kompresi foto (Sharp)
+│   ├── generate_docx.py          # Generator dokumen Word .docx resmi
+│   └── generate_ekskul_images.cjs # Generator visual kegiatan ekskul
 ├── public/
 │   ├── favicon.svg               # Favicon vektor resmi
 │   ├── robots.txt                # Petunjuk spider mesin pencari
@@ -129,9 +141,42 @@ npm run dev
 # Memeriksa validasi tipe data TypeScript & skema konten
 npm run check
 
-# Melakukan kompilasi produksi statis
+# Menjalankan kompresi dan optimasi gambar secara mandiri
+npm run optimize:images
+
+# Melakukan kompilasi produksi statis (otomatis menjalankan prebuild kompresi)
 npm run build
 
 # Menjalankan preview lokal dari folder dist/
 npm run preview
 ```
+
+---
+
+## 2.5 Arsitektur Kompresi & Optimasi Media Otomatis
+
+Untuk menjaga ukuran repositori Git tetap ramping dan memastikan website dapat dimuat dalam < 1.5 detik pada koneksi seluler wali murid, diterapkan sistem optimasi gambar multi-lapis:
+
+1. **Trigger Otomatis di Latar Belakang (GitHub Actions)**:
+   - File alur kerja: `.github/workflows/optimize-images.yml`.
+   - Terpicu setiap ada *push* baru ke `main` yang menyertakan perubahan di folder `public/images/uploads/**`.
+   - Menggunakan pustaka performa tinggi **Sharp** via `node scripts/optimize-uploads.mjs`.
+   - Menghasilkan *commit* otomatis dengan pesan `chore(media): otomatis kompres foto upload [skip ci]` sehingga tidak memicu perulangan build tak terbatas (*infinite loop*).
+
+2. **Hook Pra-Kompilasi (`prebuild`)**:
+   - Didefinisikan di `package.json` (`"prebuild": "node scripts/optimize-uploads.mjs"`).
+   - Menjamin seluruh foto yang masuk ke bundel `dist/` sudah teroptimasi dengan sempurna bahkan jika proses build dijalankan secara manual di server Cloudflare atau lokal.
+
+3. **Spesifikasi Teknis Kompresi**:
+   - **Maksimal Resolusi**: Lebar dan tinggi dibatasi maksimal **1600 px** (`fit: inside`, tidak memperbesar gambar kecil). Resolusi ini sangat ideal untuk layar Retina/High-DPI namun menjaga ukuran berkas sangat kecil.
+   - **Tingkat Kualitas Visual**: `80%` (kualitas visual tajam tanpa artefak kompresi yang mengganggu).
+   - **Metode Format**:
+     - **JPEG/JPG**: Dikompresi menggunakan modul `mozjpeg` dengan mode progresif (`progressive: true`).
+     - **PNG**: Dikompresi dengan level kompresi 9 dan `effort: 8`.
+     - **WebP**: Dikompresi dengan `effort: 6`.
+   - **In-place Overwrite**: Nama berkas dan ekstensinya tetap dipertahankan persis seperti aslinya. Hal ini menjamin bahwa seluruh tautan di artikel Markdown (`src/content/berita/*.md`) dan JSON tidak akan pernah terputus (*broken link*).
+   - **Proteksi Ukuran**: Berkas hanya ditimpa jika hasil kompresi menghasilkan ukuran yang lebih kecil dari aslinya. Jika berkas sudah optimal, proses penulisan dilewati.
+
+4. **Integrasi Tombol Aksi di Pages CMS**:
+   - Dikonfigurasikan pada `.pages.yml` melalui blok `actions`.
+   - Operator sekolah dapat memicu kompresi kapan pun secara langsung melalui tombol **"⚡ Kompres Foto Upload"** di dalam antarmuka Pages CMS.

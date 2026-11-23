@@ -70,17 +70,29 @@ Pengelolaan konten website tidak memerlukan akses server atau akun GitHub. Opera
 
 ---
 
-## 4.4 Panduan Kompresi Gambar Sebelum Upload
+## 4.4 Sistem Kompresi Gambar Otomatis & Panduan Pengunggahan
 
-Untuk menjaga kecepatan akses website sekolah di perangkat ponsel wali murid dan menghemat ruang repositori Git, **seluruh foto wajib dikompresi terlebih dahulu** sehingga berukuran di bawah **500 KB** (jangan mengunggah file foto mentah kamera berukuran 3 MB – 10 MB).
+Website SMP Wijaya Sukodono telah dilengkapi dengan **sistem kompresi dan resize otomatis di latar belakang**. Hal ini memastikan website selalu cepat dibuka oleh wali murid (beban halaman ringan) tanpa membebani operator dengan tugas kompresi manual yang rumit.
 
-### Alat Kompresi Online Cepat (Gratis & Tanpa Instal Aplikasi):
-1. **TinyPNG / TinyJPG** (`https://tinypng.com`)
-   - Buka website, seret (*drag and drop*) foto ke layar, tunggu proses kompresi otomatis, lalu unduh hasilnya.
-2. **Squoosh by Google** (`https://squoosh.app`)
-   - Unggah foto, pilih format output **WebP** atau **MozJPEG**, atur *Quality* ke 75–80%, dan tetapkan lebar maksimal (*resize width*) ke **1200 px** atau **1600 px**.
-3. **ILoveIMG** (`https://www.iloveimg.com/compress-image`)
-   - Praktis untuk mengompresi puluhan foto kegiatan sekaligus dalam satu kali klik.
+### A. Cara Kerja Kompresi Otomatis
+1. **Langsung Unggah Foto Asli**: Operator dapat langsung mengunggah foto kegiatan dari kamera ponsel atau kamera DSLR ke Pages CMS (meskipun berukuran besar, misal 3 MB – 10 MB).
+2. **Resize & Kompresi Latar Belakang**: Segera setelah artikel disimpan, sistem otomatis:
+   - Menyesuaikan resolusi foto ke standar ideal web (maksimal lebar/tinggi 1600 px).
+   - Mengompresi kualitas visual secara cerdas (kualitas 80% tetap tajam dan jernih).
+   - Menurunkan ukuran file drastis dari beberapa Megabyte menjadi hanya **100 – 250 KB** (hemat kuota pengunjung hingga 90%).
+3. **Keamanan Tautan Berita**: Format ekstensi dan nama file tetap dipertahankan sehingga foto yang disematkan dalam isi berita tidak akan pernah rusak (*broken image*).
+
+### B. Tombol Eksekusi Instan di Pages CMS
+Bila operator ingin memastikan seluruh foto lama atau foto baru di repositori sudah dalam kondisi terkompresi optimal:
+1. Masuk ke dashboard Pages CMS.
+2. Cari dan klik tombol **"⚡ Kompres Foto Upload"** di bagian atas antarmuka.
+3. Konfirmasi jendela pesan. Sistem akan memproses seluruh foto di folder unggahan dalam waktu 1–2 menit.
+
+### C. Opsi Kompresi Mandiri Sebelum Upload (Opsional / Hemat Kuota Operator)
+Jika koneksi internet operator di sekolah sedang lambat saat proses unggah foto kamera berukuran besar, operator tetap disarankan memperkecil foto terlebih dahulu menggunakan alat kompresi online gratis berikut:
+1. **TinyPNG / TinyJPG** (`https://tinypng.com`): Cukup seret (*drag and drop*) foto ke layar, tunggu proses selesai, lalu unduh hasilnya.
+2. **Squoosh by Google** (`https://squoosh.app`): Unggah foto, pilih format **MozJPEG** atau **WebP**, atur *Quality* ke 75–80%, dan tetapkan lebar maksimal ke **1600 px**.
+3. **ILoveIMG** (`https://www.iloveimg.com/compress-image`): Sangat praktis untuk mengompres puluhan foto kegiatan sekaligus dalam satu kali klik.
 
 ---
 

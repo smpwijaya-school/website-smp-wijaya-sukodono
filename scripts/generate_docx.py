@@ -633,28 +633,29 @@ def build_sop_doc():
     ])
     doc.add_list_item("5.", [("Klik tombol ", False), ("Save", True), (".", False)])
 
-    doc.add_h1("4.4 Panduan Kompresi Gambar Sebelum Upload")
+    doc.add_h1("4.4 Sistem Kompresi Gambar Otomatis & Panduan Pengunggahan")
     doc.add_callout(
-        "ATURAN EMAS KOMPRESI GAMBAR",
-        "Seluruh foto WAJIB dikompresi di bawah 500 KB sebelum diunggah ke Pages CMS. Hindari mengunggah foto kamera mentah berukuran 3 MB – 10 MB agar website tetap super cepat saat diakses wali murid lewat jaringan seluler."
+        "KOMPRESI OTOMATIS AKTIF",
+        "Website SMP Wijaya Sukodono telah dilengkapi sistem kompresi dan resize otomatis di latar belakang. Operator dapat langsung mengunggah foto kamera HP atau DSLR ke Pages CMS; sistem akan otomatis me-resize ke maks 1600 px dan mengompres ukuran berkas hingga 90% lebih ringan (sekitar 100–250 KB) tanpa mengurangi kejernihan foto."
     )
     doc.add_paragraph([
-        ("Pilihan alat kompresi online gratis tanpa instal aplikasi:", False)
+        ("Fitur dan kemudahan pengelolaan media gambar:", False)
     ])
     doc.add_list_item("1.", [
-        ("TinyPNG / TinyJPG (", True),
-        ("https://tinypng.com", False, False, True, "0284C7"),
-        ("): Cukup seret (drag & drop) foto ke layar, tunggu proses kompresi otomatis, lalu unduh hasilnya.", False)
+        ("Otomatis di Latar Belakang: ", True),
+        ("Setiap kali berita atau data disimpan, sistem otomatis mengoptimasi foto, menjaga nama berkas agar tautan artikel tidak rusak.", False)
     ])
     doc.add_list_item("2.", [
-        ("Squoosh by Google (", True),
-        ("https://squoosh.app", False, False, True, "0284C7"),
-        ("): Unggah foto, pilih format WebP atau MozJPEG, atur Quality ke 75–80%, dan atur Resize Width ke 1200 px atau 1600 px.", False)
+        ("Tombol Cepat di Pages CMS: ", True),
+        ("Tersedia tombol aksi '⚡ Kompres Foto Upload' di panel Pages CMS jika ingin memicu kompresi mandiri kapan pun.", False)
     ])
     doc.add_list_item("3.", [
-        ("ILoveIMG (", True),
-        ("https://www.iloveimg.com/compress-image", False, False, True, "0284C7"),
-        ("): Sangat praktis untuk mengompresi puluhan foto kegiatan sekolah sekaligus dalam beberapa detik.", False)
+        ("Opsi Kompresi Sebelum Upload (Hemat Kuota): ", True),
+        ("Jika jaringan seluler operator lambat saat mengunggah foto besar, gunakan kompresi online gratis seperti TinyPNG (", False),
+        ("https://tinypng.com", False, False, True, "0284C7"),
+        (") atau Squoosh (", False),
+        ("https://squoosh.app", False, False, True, "0284C7"),
+        (").", False)
     ])
 
     doc.add_h1("4.5 Lembar Serah Terima Akun & Catatan Perpanjangan Domain")

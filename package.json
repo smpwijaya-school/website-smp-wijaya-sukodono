@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "prebuild": "node scripts/optimize-uploads.mjs",
     "build": "astro build",
+    "optimize:images": "node scripts/optimize-uploads.mjs",
     "preview": "astro preview",
     "sync": "astro sync",
     "check": "astro check",
