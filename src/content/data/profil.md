@@ -1,5 +1,5 @@
 ---
-title: Profil & Identitas SMP Wijaya Sukodono
+title: Profil & Identitas SMP Wijaya Sukodonos
 visi: Terwujudnya Peserta Didik yang Beriman, Berakhlak Mulia, Unggul dalam
   Prestasi, Terampil, dan Berwawasan Lingkungan.
 misi:
