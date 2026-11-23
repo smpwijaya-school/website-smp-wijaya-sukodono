@@ -36,6 +36,13 @@ npm run build
 npm run preview
 ```
 
-## Dokumentasi Lengkap & SOP Operator
+## Dokumentasi Proyek & SOP Operator
 
-Dokumentasi lengkap PRD, arsitektur GitOps, spesifikasi sistem desain, dan SOP Operator Tata Usaha siap cetak tersedia pada file [DOKUMENTASI.md](file:///Users/adit/Projects/website-smp-wijaya-sukodono/DOKUMENTASI.md).
+Seluruh dokumentasi telah dipisahkan secara modular ke dalam direktori [`docs/`](file:///Users/adit/Projects/website-smp-wijaya-sukodono/docs/README.md):
+
+- 📚 [**Indeks Dokumentasi**](file:///Users/adit/Projects/website-smp-wijaya-sukodono/docs/README.md) — Gambaran umum dan ringkasan institusi
+- 📄 [**01. Product Requirements Document (PRD)**](file:///Users/adit/Projects/website-smp-wijaya-sukodono/docs/01-prd.md) — Persona, ruang lingkup 9 halaman, dan efisiensi biaya
+- 🏗️ [**02. Arsitektur & GitOps**](file:///Users/adit/Projects/website-smp-wijaya-sukodono/docs/02-arsitektur.md) — Diagram alur sistem, struktur folder, Cloudflare Pages & redirects
+- 🎨 [**03. Spesifikasi Sistem Desain**](file:///Users/adit/Projects/website-smp-wijaya-sukodono/docs/03-design-system.md) — Palet warna resmi, tipografi, dan standar rasio gambar
+- 📋 [**04. SOP Operator & Pengelolaan Website**](file:///Users/adit/Projects/website-smp-wijaya-sukodono/docs/04-sop-operator.md) — Panduan login CMS, publikasi berita, pengaturan SPMB, dan kompresi gambar *(Tersedia format [Word .docx](file:///Users/adit/Projects/website-smp-wijaya-sukodono/docs/04-sop-operator.docx))*
+- 📱 [**05. Panduan Paket Aset QR Code Resmi**](file:///Users/adit/Projects/website-smp-wijaya-sukodono/docs/05-panduan-qr-code.md) — Spesifikasi teknis dan panduan penempelan QR code pada materi promosi *(Tersedia format [Word .docx](file:///Users/adit/Projects/website-smp-wijaya-sukodono/docs/05-panduan-qr-code.docx))*
