@@ -1,5 +1,5 @@
 ---
-import { spmb } from '../utils/data';
+import { spmb, pengaturan } from '../utils/data';
 ---
 
 {spmb.aktif && (
@@ -10,7 +10,7 @@ import { spmb } from '../utils/data';
           {spmb.banner?.label || `SPMB ${spmb.tahun_ajaran}`}
         </span>
         <span class="text-sky-100">
-          {spmb.banner?.teks || 'Penerimaan Murid Baru SMP Wijaya Sukodono telah dibuka — Kuota terbatas.'}
+          {spmb.banner?.teks || `Penerimaan Murid Baru ${pengaturan.nama_sekolah} telah dibuka — Kuota terbatas.`}
         </span>
       </div>
       <a href="/spmb" class="font-semibold text-candiGold-400 hover:text-yellow-300 underline underline-offset-4 transition">

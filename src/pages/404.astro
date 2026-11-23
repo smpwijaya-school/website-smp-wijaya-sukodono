@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { pengaturan } from '../utils/data';
 
 const quickLinks = [
   { label: 'Beranda Utama', desc: 'Halaman depan & informasi umum sekolah', href: '/' },
@@ -14,8 +15,8 @@ const quickLinks = [
 ---
 
 <BaseLayout
-  title="Halaman Tidak Ditemukan (404) — SMP Wijaya Sukodono"
-  description="Halaman yang Anda tuju tidak ditemukan atau telah dipindahkan di website resmi SMP Wijaya Sukodono."
+  title={`Halaman Tidak Ditemukan (404) — ${pengaturan.nama_sekolah}`}
+  description={`Halaman yang Anda tuju tidak ditemukan atau telah dipindahkan di website resmi ${pengaturan.nama_sekolah}.`}
   activeNav="404"
 >
   <div class="min-h-[75vh] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 bg-slate-50">

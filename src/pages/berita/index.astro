@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { pengaturan } from '../../utils/data';
 
 const allBerita = await getCollection('berita', ({ data }) => !data.draft);
 const sortedBerita = allBerita.sort((a, b) => b.data.tanggal.getTime() - a.data.tanggal.getTime());
@@ -8,7 +9,11 @@ const sortedBerita = allBerita.sort((a, b) => b.data.tanggal.getTime() - a.data.
 const featuredNews = sortedBerita[0];
 const remainingNews = sortedBerita.slice(1);
 
-const categories = ['Semua', 'Kegiatan', 'Prestasi', 'Pengumuman', 'Akademik'];
+const defaultCategories = ['Semua', 'Kegiatan', 'Prestasi', 'Pengumuman', 'Akademik'];
+const extractedCategories = allBerita.map(b => b.data.kategori).filter(Boolean);
+const categories = ['Semua', ...new Set([...defaultCategories.slice(1), ...extractedCategories])];
+
+const heroFoto = pengaturan.hero_pages?.berita || '/images/hero/hero-berita.webp';
 
 function formatDate(date: Date) {
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
@@ -16,13 +21,13 @@ function formatDate(date: Date) {
 }
 ---
 
-<BaseLayout title="Berita & Prestasi — SMP Wijaya Sukodono" description="Dokumentasi kegiatan siswa, prestasi ekstrakurikuler, serta pengumuman resmi dari SMP Wijaya Sukodono." activeNav="berita">
+<BaseLayout title={`Berita & Prestasi — ${pengaturan.nama_sekolah}`} description={`Dokumentasi kegiatan siswa, prestasi ekstrakurikuler, serta pengumuman resmi dari ${pengaturan.nama_sekolah}.`} activeNav="berita">
   <!-- Page Header -->
   <div class="relative bg-ocean-950 text-white py-14 lg:py-20 overflow-hidden">
     <!-- Background Image with Gradient Overlay -->
     <img
-      src="/images/hero/hero-berita.webp"
-      alt="Dokumentasi Prestasi dan Kegiatan SMP Wijaya Sukodono"
+      src={heroFoto}
+      alt={`Dokumentasi Prestasi dan Kegiatan ${pengaturan.nama_sekolah}`}
       class="absolute inset-0 w-full h-full object-cover object-center animate-hero-bg"
       width="1920"
       height="800"
@@ -38,7 +43,7 @@ function formatDate(date: Date) {
         Beranda / Berita
       </div>
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight animate-hero-title">Berita, Prestasi &amp; Pengumuman</h1>
-      <p class="text-sky-100/90 mt-3 max-w-2xl text-base sm:text-lg leading-relaxed animate-hero-desc">Dokumentasi kegiatan siswa, prestasi drumband &amp; olahraga, serta pengumuman resmi dari SMP Wijaya Sukodono.</p>
+      <p class="text-sky-100/90 mt-3 max-w-2xl text-base sm:text-lg leading-relaxed animate-hero-desc">Dokumentasi kegiatan siswa, prestasi drumband &amp; olahraga, serta pengumuman resmi dari {pengaturan.nama_sekolah}.</p>
     </div>
   </div>
 
@@ -80,11 +85,22 @@ function formatDate(date: Date) {
           data-title={featuredNews.data.title.toLowerCase()}
           data-summary={featuredNews.data.ringkasan.toLowerCase()}
         >
-          <div class="lg:col-span-5 min-h-[220px] bg-gradient-to-br from-ocean-950 to-ocean-900 p-6 flex flex-col justify-between">
-            <span class="self-start px-3 py-1 rounded-full bg-candiGold-400 text-ocean-950 font-mono text-xs font-bold">
+          <div class="lg:col-span-5 min-h-[220px] bg-gradient-to-br from-ocean-950 to-ocean-900 p-6 flex flex-col justify-between relative overflow-hidden group">
+            {featuredNews.data.thumbnail ? (
+              <>
+                <img
+                  src={featuredNews.data.thumbnail}
+                  alt={featuredNews.data.title}
+                  class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                  loading="eager"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-ocean-950/90 via-ocean-950/30 to-black/40"></div>
+              </>
+            ) : null}
+            <span class="relative z-10 self-start px-3 py-1 rounded-full bg-candiGold-400 text-ocean-950 font-mono text-xs font-bold shadow-sm">
               {featuredNews.data.kategori} &bull; TERBARU
             </span>
-            <div class="text-sky-200 font-mono text-xs">{formatDate(featuredNews.data.tanggal)}</div>
+            <div class="relative z-10 text-sky-200 font-mono text-xs drop-shadow">{formatDate(featuredNews.data.tanggal)}</div>
           </div>
           <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-center">
             <h2 class="text-xl sm:text-2xl font-bold text-ocean-950 leading-snug group-hover:text-cerulean-600 transition">
@@ -110,13 +126,24 @@ function formatDate(date: Date) {
           data-title={item.data.title.toLowerCase()}
           data-summary={item.data.ringkasan.toLowerCase()}
         >
-          <div class="aspect-video bg-gradient-to-br from-ocean-950 to-ocean-900 p-4 flex flex-col justify-between relative">
-            <span class="self-start px-2.5 py-1 rounded-full bg-candiGold-400 text-ocean-950 font-mono text-[11px] font-bold">
+          <div class="aspect-video bg-gradient-to-br from-ocean-950 to-ocean-900 p-4 flex flex-col justify-between relative overflow-hidden group">
+            {item.data.thumbnail ? (
+              <>
+                <img
+                  src={item.data.thumbnail}
+                  alt={item.data.title}
+                  class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-ocean-950/90 via-ocean-950/20 to-black/30"></div>
+              </>
+            ) : null}
+            <span class="relative z-10 self-start px-2.5 py-1 rounded-full bg-candiGold-400 text-ocean-950 font-mono text-[11px] font-bold shadow-sm">
               {item.data.kategori}
             </span>
-            <div class="flex items-center justify-between text-sky-200/80 text-xs font-mono">
+            <div class="relative z-10 flex items-center justify-between text-sky-200 text-xs font-mono drop-shadow">
               <span>{formatDate(item.data.tanggal)}</span>
-              <span>SMP Wijaya</span>
+              <span>{pengaturan.nama_sekolah}</span>
             </div>
           </div>
           <div class="p-5 flex-1 flex flex-col">
@@ -150,19 +177,19 @@ function formatDate(date: Date) {
       const q = (searchInput?.value || '').toLowerCase().trim();
       let visibleCount = 0;
 
-      items.forEach(el => {
-        const itemCat = el.getAttribute('data-category');
-        const itemTitle = el.getAttribute('data-title');
-        const itemSummary = el.getAttribute('data-summary');
+      items.forEach(item => {
+        const itemCat = item.getAttribute('data-category');
+        const itemTitle = item.getAttribute('data-title');
+        const itemSummary = item.getAttribute('data-summary');
 
         const matchCat = currentCat === 'Semua' || itemCat === currentCat;
         const matchQuery = !q || itemTitle.includes(q) || itemSummary.includes(q);
 
         if (matchCat && matchQuery) {
-          el.classList.remove('hidden');
+          item.classList.remove('hidden');
           visibleCount++;
         } else {
-          el.classList.add('hidden');
+          item.classList.add('hidden');
         }
       });
 

@@ -24,12 +24,28 @@ export const HeroHomeSchema = z.object({
   tombol_sekunder_link: z.string().optional(),
 });
 
+export const ProgramUnggulanItemSchema = z.object({
+  nomor: z.string(),
+  judul: z.string(),
+  deskripsi: z.string(),
+});
+
+export const HeroPagesSchema = z.object({
+  profil: z.string().optional(),
+  fasilitas: z.string().optional(),
+  ekskul: z.string().optional(),
+  guru: z.string().optional(),
+  berita: z.string().optional(),
+  kontak: z.string().optional(),
+});
+
 export const PengaturanSchema = z.object({
   nama_sekolah: z.string(),
   npsn: z.string(),
   akreditasi: z.string(),
   hero: HeroHomeSchema.optional(),
   sambutan_kepsek: z.object({
+    judul: z.string().optional(),
     nama: z.string(),
     foto: z.string().optional(),
     pesan: z.string(),
@@ -40,7 +56,11 @@ export const PengaturanSchema = z.object({
     whatsapp: z.string(),
     email: z.string(),
     instagram: z.string().optional(),
+    jam_layanan: z.string().optional(),
+    maps_url: z.string().optional(),
   }),
+  program_unggulan: z.array(ProgramUnggulanItemSchema).optional(),
+  hero_pages: HeroPagesSchema.optional(),
 });
 
 export const GuruItemSchema = z.object({

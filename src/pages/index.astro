@@ -24,10 +24,20 @@ const hero = pengaturan.hero || {};
 const heroFoto = hero.foto?.trim() || '/images/hero/hero-home.webp';
 const heroBadge = hero.badge?.trim() || `NPSN ${pengaturan.npsn} • ${pengaturan.akreditasi.toUpperCase()} • SIDOARJO`;
 const heroDeskripsi = hero.deskripsi?.trim() || 'Enam dekade mengabdi mencetak insan berakhlak mulia, unggul akademik, dan berprestasi di Pekarungan, Sukodono.';
-const heroTombolUtamaTeks = hero.tombol_utama_teks?.trim() || `Informasi SPMB ${spmb.tahun_ajaran}`;
+const heroTombolUtamaTeks = hero.tombol_utama_teks?.trim() || (spmb.aktif ? `Informasi SPMB ${spmb.tahun_ajaran}` : `Informasi SPMB`);
 const heroTombolUtamaLink = hero.tombol_utama_link?.trim() || '/spmb';
 const heroTombolSekunderTeks = hero.tombol_sekunder_teks?.trim() || 'Profil Sekolah';
 const heroTombolSekunderLink = hero.tombol_sekunder_link?.trim() || '/profil';
+
+const defaultPrograms = [
+  { nomor: "01", judul: "Kurikulum Merdeka & P5", deskripsi: "Pembelajaran kontekstual berpusat pada siswa serta Proyek Penguatan Profil Pelajar Pancasila yang melatih kolaborasi." },
+  { nomor: "02", judul: "Drumband & Seni Budaya", deskripsi: "Unit Marching Band aktif berprestasi di tingkat Kabupaten Sidoarjo, melatih disiplin, kekompakan, dan percaya diri." },
+  { nomor: "03", judul: "Pembinaan Olahraga", deskripsi: "Klub bola voli dan olahraga prestasi yang aktif menyelenggarakan turnamen antar-SD se-Kecamatan Sukodono." },
+  { nomor: "04", judul: "Karakter & Kepemimpinan", deskripsi: "Pembiasaan ibadah harian, literasi pagi, OSIS, Pramuka, dan Paskibra untuk membentuk pribadi tangguh dan santun." }
+];
+const programs = (pengaturan.program_unggulan && pengaturan.program_unggulan.length > 0)
+  ? pengaturan.program_unggulan
+  : defaultPrograms;
 ---
 
 <BaseLayout
@@ -122,7 +132,7 @@ const heroTombolSekunderLink = hero.tombol_sekunder_link?.trim() || '/profil';
         <div class="lg:col-span-8 space-y-5 reveal delay-150">
           <div class="text-xs font-mono font-semibold uppercase tracking-widest text-cerulean-600">Sambutan Kepala Sekolah</div>
           <h2 class="text-2xl sm:text-3xl font-bold text-ocean-950 tracking-tight">
-            Bersama Menyiapkan Generasi Unggul yang Siap Melangkah Lebih Jauh
+            {pengaturan.sambutan_kepsek.judul || 'Bersama Menyiapkan Generasi Unggul yang Siap Melangkah Lebih Jauh'}
           </h2>
           {pengaturan.sambutan_kepsek.pesan ? (
             pengaturan.sambutan_kepsek.pesan.split('\n\n').map((p) => (
@@ -136,7 +146,7 @@ const heroTombolSekunderLink = hero.tombol_sekunder_link?.trim() || '/profil';
           <div class="pt-2 flex flex-wrap items-center gap-6">
             <div>
               <div class="font-bold text-ocean-950">{pengaturan.sambutan_kepsek.nama}</div>
-              <div class="text-xs text-slate-500">Kepala Sekolah &bull; SMP Wijaya Sukodono</div>
+              <div class="text-xs text-slate-500">Kepala Sekolah &bull; {pengaturan.nama_sekolah}</div>
             </div>
             <a href="/profil" class="inline-flex items-center gap-1.5 text-sm font-semibold text-cerulean-600 hover:text-cerulean-700 transition group">
               <span>Baca Profil Lengkap</span>
@@ -164,26 +174,15 @@ const heroTombolSekunderLink = hero.tombol_sekunder_link?.trim() || '/profil';
         </div>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white rounded-xl border border-slate-200 p-6 card-interactive reveal delay-75">
-          <div class="w-11 h-11 rounded-lg bg-wijayaCyan-50 text-cerulean-600 flex items-center justify-center mb-4 font-bold">01</div>
-          <h3 class="text-lg font-bold text-ocean-950 mb-2">Kurikulum Merdeka &amp; P5</h3>
-          <p class="text-sm text-slate-600 leading-relaxed">Pembelajaran kontekstual berpusat pada siswa serta Proyek Penguatan Profil Pelajar Pancasila yang melatih kolaborasi.</p>
-        </div>
-        <div class="bg-white rounded-xl border border-slate-200 p-6 card-interactive reveal delay-150">
-          <div class="w-11 h-11 rounded-lg bg-wijayaCyan-50 text-cerulean-600 flex items-center justify-center mb-4 font-bold">02</div>
-          <h3 class="text-lg font-bold text-ocean-950 mb-2">Drumband &amp; Seni Budaya</h3>
-          <p class="text-sm text-slate-600 leading-relaxed">Unit Marching Band aktif berprestasi di tingkat Kabupaten Sidoarjo, melatih disiplin, kekompakan, dan percaya diri.</p>
-        </div>
-        <div class="bg-white rounded-xl border border-slate-200 p-6 card-interactive reveal delay-200">
-          <div class="w-11 h-11 rounded-lg bg-wijayaCyan-50 text-cerulean-600 flex items-center justify-center mb-4 font-bold">03</div>
-          <h3 class="text-lg font-bold text-ocean-950 mb-2">Pembinaan Olahraga</h3>
-          <p class="text-sm text-slate-600 leading-relaxed">Klub bola voli dan olahraga prestasi yang aktif menyelenggarakan turnamen antar-SD se-Kecamatan Sukodono.</p>
-        </div>
-        <div class="bg-white rounded-xl border border-slate-200 p-6 card-interactive reveal delay-250">
-          <div class="w-11 h-11 rounded-lg bg-wijayaCyan-50 text-cerulean-600 flex items-center justify-center mb-4 font-bold">04</div>
-          <h3 class="text-lg font-bold text-ocean-950 mb-2">Karakter &amp; Kepemimpinan</h3>
-          <p class="text-sm text-slate-600 leading-relaxed">Pembiasaan ibadah harian, literasi pagi, OSIS, Pramuka, dan Paskibra untuk membentuk pribadi tangguh dan santun.</p>
-        </div>
+        {programs.map((prog, idx) => (
+          <div class={`bg-white rounded-xl border border-slate-200 p-6 card-interactive reveal delay-${(idx + 1) * 75}`}>
+            <div class="w-11 h-11 rounded-lg bg-wijayaCyan-50 text-cerulean-600 flex items-center justify-center mb-4 font-bold font-mono">
+              {prog.nomor}
+            </div>
+            <h3 class="text-lg font-bold text-ocean-950 mb-2">{prog.judul}</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">{prog.deskripsi}</p>
+          </div>
+        ))}
       </div>
     </div>
   </div>
@@ -326,15 +325,19 @@ const heroTombolSekunderLink = hero.tombol_sekunder_link?.trim() || '/profil';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
       <div class="space-y-2 max-w-2xl">
         <div class="text-xs font-mono uppercase tracking-widest text-candiGold-400 font-semibold">SPMB Tahun Ajaran {spmb.tahun_ajaran}</div>
-        <h2 class="text-2xl sm:text-3xl font-bold">Bergabunglah Bersama Keluarga Besar SMP Wijaya Sukodono</h2>
-        <p class="text-sm sm:text-base text-sky-100/90">Kunjungi halaman informasi SPMB untuk melihat syarat berkas, jadwal gelombang, atau hubungi langsung panitia Tata Usaha kami.</p>
+        <h2 class="text-2xl sm:text-3xl font-bold">Bergabunglah Bersama Keluarga Besar {pengaturan.nama_sekolah}</h2>
+        <p class="text-sm sm:text-base text-sky-100/90">
+          {spmb.aktif
+            ? 'Kunjungi halaman informasi SPMB untuk melihat syarat berkas, jadwal gelombang, atau hubungi langsung panitia Tata Usaha kami.'
+            : 'Pendaftaran saat ini sedang ditutup. Anda dapat melihat informasi gelombang, persyaratan berkas, atau menghubungi langsung kantor Tata Usaha kami.'}
+        </p>
       </div>
       <div class="flex flex-wrap gap-3">
         <a
           href="/spmb"
           class="px-6 py-3.5 rounded-lg bg-candiGold-400 hover:bg-yellow-300 text-ocean-950 font-bold text-sm transition transform hover:-translate-y-0.5 active:scale-[0.98] inline-block shadow-md"
         >
-          Buka Info SPMB
+          {spmb.aktif ? 'Buka Info SPMB' : 'Lihat Info SPMB'}
         </a>
         <a
           href="/kontak"

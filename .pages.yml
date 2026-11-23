@@ -118,6 +118,7 @@ content:
         label: "Sambutan Kepala Sekolah"
         type: object
         fields:
+          - { name: judul, label: "Judul / Subheading Sambutan", type: string }
           - { name: nama, label: "Nama Kepala Sekolah", type: string }
           - { name: foto, label: "Foto Kepala Sekolah", type: image }
           - { name: pesan, label: "Isi Sambutan Singkat", type: text }
@@ -127,9 +128,29 @@ content:
         fields:
           - { name: alamat, label: "Alamat Lengkap", type: text }
           - { name: telepon, label: "Telepon Sekolah", type: string }
-          - { name: whatsapp, label: "Nomor WA TU (62812xxx)", type: string }
+          - { name: whatsapp, label: "Nomor WA TU (08xxx / 628xxx)", type: string }
           - { name: email, label: "Email Resmi Sekolah", type: string }
           - { name: instagram, label: "Link Instagram Sekolah", type: string }
+          - { name: jam_layanan, label: "Jam Layanan Tata Usaha", type: string }
+          - { name: maps_url, label: "Tautan / Embed Google Maps", type: string }
+      - name: program_unggulan
+        label: "Program Unggulan Sekolah (4 Pilar Beranda)"
+        type: object
+        list: true
+        fields:
+          - { name: nomor, label: "Nomor Urut (contoh: 01)", type: string, required: true }
+          - { name: judul, label: "Nama Program Unggulan", type: string, required: true }
+          - { name: deskripsi, label: "Penjelasan Singkat Program", type: text, required: true }
+      - name: hero_pages
+        label: "Foto Latar Hero Halaman Lain (Opsional)"
+        type: object
+        fields:
+          - { name: profil, label: "Foto Hero Profil", type: image }
+          - { name: fasilitas, label: "Foto Hero Fasilitas", type: image }
+          - { name: ekskul, label: "Foto Hero Ekstrakurikuler", type: image }
+          - { name: guru, label: "Foto Hero Guru & Staf", type: image }
+          - { name: berita, label: "Foto Hero Berita", type: image }
+          - { name: kontak, label: "Foto Hero Kontak", type: image }
 
   - name: fasilitas
     label: "Fasilitas Sekolah"
@@ -179,8 +200,18 @@ content:
     path: src/content/data/profil.md
     fields:
       - { name: title, label: "Judul Halaman", type: string }
+      - { name: deskripsi, label: "Deskripsi Singkat Hero", type: text }
+      - { name: hero_foto, label: "Foto Latar Hero (16:9)", type: image }
+      - { name: sejarah_judul, label: "Subjudul Sejarah Sekolah", type: string }
       - { name: visi, label: "Visi Sekolah", type: text }
       - { name: misi, label: "Daftar Misi", type: string, list: true }
+      - name: filosofi_logo
+        label: "Makna Unsur Lambang / Filosofi Logo"
+        type: object
+        list: true
+        fields:
+          - { name: judul, label: "Nama Unsur (contoh: 1. Perisai Segi Lima...)", type: string, required: true }
+          - { name: penjelasan, label: "Makna / Filosofi Unsur", type: text, required: true }
       - { name: body, label: "Sejarah & Profil Lengkap", type: rich-text }
 
   - name: ekstrakurikuler

@@ -1,19 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { guruData } from '../utils/data';
+import { guruData, pengaturan } from '../utils/data';
 import type { GuruItem } from '../content.config';
 
 const allGuru = (guruData.daftar || []) as GuruItem[];
-const categories = ['Semua', 'Pimpinan', 'Guru Mapel', 'Staf TU'];
+const defaultCategories = ['Semua', 'Pimpinan', 'Guru Mapel', 'Staf TU'];
+const categories = ['Semua', ...new Set([...defaultCategories.slice(1), ...allGuru.map(g => g.bidang).filter(Boolean)])];
+const heroFoto = pengaturan.hero_pages?.guru || '/images/hero/hero-guru.webp';
 ---
 
-<BaseLayout title="Direktori Guru & Staf — SMP Wijaya Sukodono" description="Daftar tenaga pendidik profesional dan staf kependidikan SMP Wijaya Sukodono yang mendampingi proses belajar siswa." activeNav="guru">
+<BaseLayout
+  title={`Direktori Guru & Staf — ${pengaturan.nama_sekolah}`}
+  description={`Daftar tenaga pendidik profesional dan staf kependidikan ${pengaturan.nama_sekolah} yang mendampingi proses belajar siswa.`}
+  activeNav="guru"
+>
   <!-- Page Header -->
   <div class="relative bg-ocean-950 text-white py-14 lg:py-20 overflow-hidden">
     <!-- Background Image with Gradient Overlay -->
     <img
-      src="/images/hero/hero-guru.webp"
-      alt="Dewan Guru dan Tenaga Pendidik SMP Wijaya Sukodono"
+      src={heroFoto}
+      alt={`Dewan Guru dan Tenaga Pendidik ${pengaturan.nama_sekolah}`}
       class="absolute inset-0 w-full h-full object-cover object-center animate-hero-bg"
       loading="eager"
       fetchpriority="high"

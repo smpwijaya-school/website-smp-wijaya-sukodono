@@ -1,23 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { ekskulData, spmb } from '../utils/data';
+import { ekskulData, spmb, pengaturan } from '../utils/data';
 import EkskulModal from '../components/EkskulModal.astro';
 
 const allEkskul = ekskulData.daftar;
-const categories = ['Semua', 'Olahraga', 'Seni & Budaya', 'Kepemimpinan', 'Keagamaan', 'Minat & Bakat'];
+const defaultCategories = ['Semua', 'Olahraga', 'Seni & Budaya', 'Kepemimpinan', 'Keagamaan', 'Minat & Bakat'];
+const categories = ['Semua', ...new Set([...defaultCategories.slice(1), ...allEkskul.map(e => e.kategori).filter(Boolean)])];
+const heroFoto = pengaturan.hero_pages?.ekskul || '/images/hero/hero-ekskul.webp';
 ---
 
 <BaseLayout
-  title="Ekstrakurikuler — SMP Wijaya Sukodono"
-  description="Daftar kegiatan ekstrakurikuler unggulan di SMP Wijaya Sukodono. Wadah pengembangan minat, bakat, karakter, kepemimpinan, dan prestasi non-akademik siswa."
+  title={`Ekstrakurikuler — ${pengaturan.nama_sekolah}`}
+  description={`Daftar kegiatan ekstrakurikuler unggulan di ${pengaturan.nama_sekolah}. Wadah pengembangan minat, bakat, karakter, kepemimpinan, dan prestasi non-akademik siswa.`}
   activeNav="ekskul"
 >
   <!-- Page Header -->
   <div class="relative bg-ocean-950 text-white py-14 lg:py-20 overflow-hidden">
     <!-- Background Image with Gradient Overlay -->
     <img
-      src="/images/hero/hero-ekskul.webp"
-      alt="Kegiatan Ekstrakurikuler dan Pengembangan Minat Bakat Siswa SMP Wijaya Sukodono"
+      src={heroFoto}
+      alt={`Kegiatan Ekstrakurikuler dan Pengembangan Minat Bakat Siswa ${pengaturan.nama_sekolah}`}
       class="absolute inset-0 w-full h-full object-cover object-center animate-hero-bg"
       loading="eager"
       fetchpriority="high"
@@ -200,7 +202,7 @@ const categories = ['Semua', 'Olahraga', 'Seni & Budaya', 'Kepemimpinan', 'Keaga
           Penerimaan Murid Baru
         </div>
         <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
-          Asah Bakat dan Ukir Prestasi di SMP Wijaya Sukodono
+          Asah Bakat dan Ukir Prestasi di {pengaturan.nama_sekolah}
         </h3>
         <p class="text-sky-100/90 text-sm sm:text-base mt-3 leading-relaxed">
           Seluruh siswa kelas VII mendapatkan kesempatan bebas memilih ekstrakurikuler sesuai bakat dan minat masing-masing dengan fasilitas latihan yang memadai dan pembina yang berpengalaman.
@@ -210,7 +212,7 @@ const categories = ['Semua', 'Olahraga', 'Seni & Budaya', 'Kepemimpinan', 'Keaga
             href="/spmb"
             class="px-5 py-2.5 rounded-lg bg-candiGold-400 hover:bg-yellow-300 text-ocean-950 font-bold text-sm shadow-md transition transform hover:-translate-y-0.5 active:scale-[0.98] inline-flex items-center gap-2"
           >
-            <span>Daftar SPMB {spmb.tahun_ajaran}</span>
+            <span>{spmb.aktif ? `Daftar SPMB ${spmb.tahun_ajaran}` : `Informasi SPMB ${spmb.tahun_ajaran}`}</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>

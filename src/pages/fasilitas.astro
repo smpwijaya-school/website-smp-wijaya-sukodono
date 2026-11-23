@@ -1,19 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FacilityModal from '../components/FacilityModal.astro';
-import { fasilitasData } from '../utils/data';
+import { fasilitasData, pengaturan } from '../utils/data';
 
 const allFacilities = fasilitasData.daftar;
-const categories = ['Semua', 'Akademik', 'Laboratorium', 'Olahraga & Ibadah'];
+const defaultCategories = ['Semua', 'Akademik', 'Laboratorium', 'Olahraga & Ibadah'];
+const categories = ['Semua', ...new Set([...defaultCategories.slice(1), ...allFacilities.map(f => f.kategori).filter(Boolean)])];
+const heroFoto = pengaturan.hero_pages?.fasilitas || '/images/hero/hero-fasilitas.webp';
 ---
 
-<BaseLayout title="Fasilitas & Sarana Prasarana — SMP Wijaya Sukodono" description="Fasilitas belajar yang mendukung kegiatan akademik, praktikum sains, olahraga, dan pembinaan ibadah siswa di SMP Wijaya Sukodono." activeNav="fasilitas">
+<BaseLayout
+  title={`Fasilitas & Sarana Prasarana — ${pengaturan.nama_sekolah}`}
+  description={`Fasilitas belajar yang mendukung kegiatan akademik, praktikum sains, olahraga, dan pembinaan ibadah siswa di ${pengaturan.nama_sekolah}.`}
+  activeNav="fasilitas"
+>
   <!-- Page Header -->
   <div class="relative bg-ocean-950 text-white py-14 lg:py-20 overflow-hidden">
     <!-- Background Image with Gradient Overlay -->
     <img
-      src="/images/hero/hero-fasilitas.webp"
-      alt="Sarana Prasarana dan Fasilitas Sekolah SMP Wijaya Sukodono"
+      src={heroFoto}
+      alt={`Sarana Prasarana dan Fasilitas Sekolah ${pengaturan.nama_sekolah}`}
       class="absolute inset-0 w-full h-full object-cover object-center animate-hero-bg"
       loading="eager"
       fetchpriority="high"

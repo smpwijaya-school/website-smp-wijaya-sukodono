@@ -4,6 +4,12 @@ import { pengaturan } from '../utils/data';
 import * as profilData from '../content/data/profil.md';
 
 const { frontmatter, Content } = profilData;
+
+const pageTitle = frontmatter.title?.trim() || `Profil & Identitas ${pengaturan.nama_sekolah}`;
+const pageDesc = frontmatter.deskripsi?.trim() || "Mengenal sejarah pengabdian, identitas resmi Kemdikbud, visi-misi pendidikan, serta makna filosofis lambang sekolah.";
+const heroFoto = frontmatter.hero_foto?.trim() || pengaturan.hero_pages?.profil || '/images/hero/hero-profil.webp';
+const sejarahJudul = frontmatter.sejarah_judul?.trim() || "Enam Dekade Mencerdaskan Putra-Putri Sukodono";
+
 const visi = frontmatter.visi || "Terwujudnya Peserta Didik yang Beriman, Berakhlak Mulia, Unggul dalam Prestasi, Terampil, dan Berwawasan Lingkungan.";
 const misi = Array.isArray(frontmatter.misi) && frontmatter.misi.length > 0 ? frontmatter.misi : [
   "Menanamkan keimanan, ketakwaan, dan pembiasaan akhlakul karimah dalam seluruh aktivitas warga sekolah.",
@@ -11,15 +17,38 @@ const misi = Array.isArray(frontmatter.misi) && frontmatter.misi.length > 0 ? fr
   "Mengembangkan potensi bakat di bidang olahraga, seni drumband, kepramukaan, dan keterampilan abad ke-21.",
   "Membangun lingkungan belajar yang bersih, disiplin, harmonis, serta bersinergi dengan orang tua dan masyarakat."
 ];
+
+const defaultFilosofi = [
+  {
+    judul: "1. Perisai Segi Lima Biru Cyan",
+    penjelasan: "Melambangkan Pancasila sebagai dasar pendidikan serta keteduhan dan kejernihan berpikir seluruh warga sekolah."
+  },
+  {
+    judul: "2. Gapura Candi Kuning Emas",
+    penjelasan: "Mencerminkan akar sejarah budaya luhur Jawa Timur (semangat Wijaya) dan cita-cita mulia menuju kejayaan prestasi."
+  },
+  {
+    judul: "3. Pena Biru Tegak Lurus",
+    penjelasan: "Simbol ketekunan menuntut ilmu, kreativitas menulis karya, dan keteguhan prinsip kebenaran."
+  },
+  {
+    judul: "4. Buku Terbuka Berwarna Putih",
+    penjelasan: "Melambangkan keterbukaan terhadap ilmu pengetahuan yang dilandasi ketulusan hati dan akhlak mulia."
+  }
+];
+
+const filosofiList = Array.isArray(frontmatter.filosofi_logo) && frontmatter.filosofi_logo.length > 0
+  ? frontmatter.filosofi_logo
+  : defaultFilosofi;
 ---
 
-<BaseLayout title="Profil & Filosofi Logo — SMP Wijaya Sukodono" description="Mengenal sejarah pengabdian, identitas resmi Kemdikbud, visi-misi pendidikan, serta makna filosofis lambang SMP Wijaya Sukodono." activeNav="profil">
+<BaseLayout title={`${pageTitle} — ${pengaturan.nama_sekolah}`} description={pageDesc} activeNav="profil">
   <!-- Page Header -->
   <div class="relative bg-ocean-950 text-white py-14 lg:py-20 overflow-hidden">
     <!-- Background Image with Gradient Overlay -->
     <img
-      src="/images/hero/hero-profil.webp"
-      alt="Sejarah Pengabdian dan Ruang Literasi SMP Wijaya Sukodono"
+      src={heroFoto}
+      alt={`Sejarah Pengabdian dan Lingkungan ${pengaturan.nama_sekolah}`}
       class="absolute inset-0 w-full h-full object-cover object-center animate-hero-bg"
       width="1920"
       height="800"
@@ -34,8 +63,8 @@ const misi = Array.isArray(frontmatter.misi) && frontmatter.misi.length > 0 ? fr
       <div class="inline-flex items-center px-3 py-1 rounded-full bg-ocean-900/80 border border-wijayaCyan-400/30 text-xs font-mono text-wijayaCyan-300 uppercase tracking-wider mb-3 animate-hero-badge">
         Beranda / Tentang Kami
       </div>
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight animate-hero-title">Profil &amp; Identitas SMP Wijaya Sukodono</h1>
-      <p class="text-sky-100/90 mt-3 max-w-2xl text-base sm:text-lg leading-relaxed animate-hero-desc">Mengenal sejarah pengabdian, identitas resmi Kemdikbud, visi-misi pendidikan, serta makna filosofis lambang sekolah.</p>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight animate-hero-title">{pageTitle}</h1>
+      <p class="text-sky-100/90 mt-3 max-w-2xl text-base sm:text-lg leading-relaxed animate-hero-desc">{pageDesc}</p>
     </div>
   </div>
 
@@ -44,7 +73,7 @@ const misi = Array.isArray(frontmatter.misi) && frontmatter.misi.length > 0 ? fr
     <div class="grid lg:grid-cols-12 gap-10 reveal">
       <div class="lg:col-span-7 space-y-4">
         <div class="text-xs font-mono font-semibold uppercase tracking-widest text-cerulean-600">Sejarah Singkat</div>
-        <h2 class="text-2xl font-bold text-ocean-950">Enam Dekade Mencerdaskan Putra-Putri Sukodono</h2>
+        <h2 class="text-2xl font-bold text-ocean-950">{sejarahJudul}</h2>
         <div class="text-slate-600 leading-relaxed space-y-4">
           <Content />
         </div>
@@ -88,36 +117,26 @@ const misi = Array.isArray(frontmatter.misi) && frontmatter.misi.length > 0 ? fr
       </div>
     </div>
 
-    <!-- Filosofi Logo -->
+    <!-- Filosofi Logo (Dinamis dari CMS) -->
     <div id="filosofi" class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-10 scroll-mt-24 reveal card-interactive">
       <div class="grid lg:grid-cols-12 gap-8 items-center">
         <div class="lg:col-span-4 flex flex-col items-center text-center">
           <div class="w-52 h-52 rounded-2xl bg-slate-50 border border-slate-200 p-5 flex items-center justify-center">
             <svg viewBox="0 0 200 200" class="w-full h-full"><use href="#logo-smp-wijaya"></use></svg>
           </div>
-          <div class="mt-4 font-bold text-ocean-950">Lambang Resmi SMP Wijaya Sukodono</div>
+          <div class="mt-4 font-bold text-ocean-950">Lambang Resmi {pengaturan.nama_sekolah}</div>
           <div class="text-xs text-slate-500 mt-1">Sumber palet warna resmi identitas digital sekolah</div>
         </div>
         <div class="lg:col-span-8 space-y-4">
           <div class="text-xs font-mono font-semibold uppercase tracking-widest text-cerulean-600">Filosofi Lambang</div>
           <h2 class="text-2xl font-bold text-ocean-950">Makna Unsur pada Logo Sekolah</h2>
           <div class="grid sm:grid-cols-2 gap-4 pt-2">
-            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
-              <div class="font-bold text-ocean-950 text-sm">1. Perisai Segi Lima Biru Cyan</div>
-              <p class="text-xs sm:text-sm text-slate-600 mt-1">Melambangkan Pancasila sebagai dasar pendidikan serta keteduhan dan kejernihan berpikir seluruh warga sekolah.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
-              <div class="font-bold text-ocean-950 text-sm">2. Gapura Candi Kuning Emas</div>
-              <p class="text-xs sm:text-sm text-slate-600 mt-1">Mencerminkan akar sejarah budaya luhur Jawa Timur (semangat Wijaya) dan cita-cita mulia menuju kejayaan prestasi.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
-              <div class="font-bold text-ocean-950 text-sm">3. Pena Biru Tegak Lurus</div>
-              <p class="text-xs sm:text-sm text-slate-600 mt-1">Simbol ketekunan menuntut ilmu, kreativitas menulis karya, dan keteguhan prinsip kebenaran.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
-              <div class="font-bold text-ocean-950 text-sm">4. Buku Terbuka Berwarna Putih</div>
-              <p class="text-xs sm:text-sm text-slate-600 mt-1">Melambangkan keterbukaan terhadap ilmu pengetahuan yang dilandasi ketulusan hati dan akhlak mulia.</p>
-            </div>
+            {filosofiList.map((item: { judul: string; penjelasan: string }) => (
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <div class="font-bold text-ocean-950 text-sm">{item.judul}</div>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1">{item.penjelasan}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

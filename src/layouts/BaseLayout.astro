@@ -3,7 +3,7 @@ import '../styles/global.css';
 import TopBarSPMB from '../components/TopBarSPMB.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { pengaturan } from '../utils/data';
+import { pengaturan, spmb } from '../utils/data';
 
 interface Props {
   title?: string;
@@ -12,9 +12,12 @@ interface Props {
   image?: string;
 }
 
+const defaultTitle = `${pengaturan.nama_sekolah} — Website Resmi Sekolah (NPSN: ${pengaturan.npsn})`;
+const defaultDesc = `Website resmi ${pengaturan.nama_sekolah}, ${pengaturan.kontak.alamat}. Informasi profil sekolah, fasilitas, direktori guru, berita prestasi, dan SPMB ${spmb.tahun_ajaran}.`;
+
 const {
-  title = 'SMP Wijaya Sukodono — Website Resmi Sekolah (NPSN: 20540036)',
-  description = 'Website resmi SMP Wijaya Sukodono, Desa Pekarungan, Kec. Sukodono, Kab. Sidoarjo, Jawa Timur. Informasi profil sekolah, fasilitas, direktori guru, berita prestasi, dan SPMB 2026/2027.',
+  title = defaultTitle,
+  description = defaultDesc,
   activeNav = 'home',
   image = '/images/logo-smp-wijaya.svg',
 } = Astro.props;

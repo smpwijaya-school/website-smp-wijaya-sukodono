@@ -15,6 +15,7 @@
     "tombol_sekunder_link": "/profil"
   },
   "sambutan_kepsek": {
+    "judul": "Bersama Menyiapkan Generasi Unggul yang Siap Melangkah Lebih Jauh",
     "nama": "Yennis Fitriyan, S.E., M.Pd.",
     "foto": "",
     "pesan": "Assalamu'alaikum warahmatullahi wabarakatuh. Puji syukur ke hadirat Allah SWT atas terselenggaranya laman informasi resmi SMP Wijaya Sukodono. Kehadiran website ini menjadi wujud komitmen kami dalam menghadirkan keterbukaan informasi, mendokumentasikan capaian prestasi siswa, serta memudahkan komunikasi antara sekolah, orang tua, alumni, dan masyarakat Sukodono.\n\nDengan pengalaman mendidik lebih dari enam dekade hingga angkatan Purna Widya ke-LXIV, kami bersyukur terus mengantarkan peserta didik lulus seratus persen dengan bekal karakter mulia, kemandirian, dan prestasi non-akademik yang membanggakan."
@@ -24,6 +25,38 @@
     "telepon": "(031) 8830995",
     "whatsapp": "081331377724",
     "email": "info@smpwijayasukodono.sch.id",
-    "instagram": "https://instagram.com/smpwijayasukodono"
+    "instagram": "https://instagram.com/smpwijayasukodono",
+    "jam_layanan": "Senin – Sabtu, 07.30 – 13.00 WIB (Minggu & Hari Libur Nasional tutup)",
+    "maps_url": "https://www.google.com/maps?q=SMP+Wijaya+Sukodono+Pekarungan+Sidoarjo&output=embed"
+  },
+  "program_unggulan": [
+    {
+      "nomor": "01",
+      "judul": "Kurikulum Merdeka & P5",
+      "deskripsi": "Pembelajaran kontekstual berpusat pada siswa serta Proyek Penguatan Profil Pelajar Pancasila yang melatih kolaborasi."
+    },
+    {
+      "nomor": "02",
+      "judul": "Drumband & Seni Budaya",
+      "deskripsi": "Unit Marching Band aktif berprestasi di tingkat Kabupaten Sidoarjo, melatih disiplin, kekompakan, dan percaya diri."
+    },
+    {
+      "nomor": "03",
+      "judul": "Pembinaan Olahraga",
+      "deskripsi": "Klub bola voli dan olahraga prestasi yang aktif menyelenggarakan turnamen antar-SD se-Kecamatan Sukodono."
+    },
+    {
+      "nomor": "04",
+      "judul": "Karakter & Kepemimpinan",
+      "deskripsi": "Pembiasaan ibadah harian, literasi pagi, OSIS, Pramuka, dan Paskibra untuk membentuk pribadi tangguh dan santun."
+    }
+  ],
+  "hero_pages": {
+    "profil": "/images/hero/hero-profil.webp",
+    "fasilitas": "/images/hero/hero-fasilitas.webp",
+    "ekskul": "/images/hero/hero-ekskul.webp",
+    "guru": "/images/hero/hero-guru.webp",
+    "berita": "/images/hero/hero-berita.webp",
+    "kontak": "/images/hero/hero-kontak.webp"
   }
 }

@@ -2,15 +2,16 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { spmb, pengaturan } from '../utils/data';
 
-const waNumber = spmb.pendaftaran.kontak_wa || pengaturan.kontak?.whatsapp || '6281331377724';
+const rawWa = spmb.pendaftaran.kontak_wa || pengaturan.kontak?.whatsapp || '6281331377724';
+const waNumber = rawWa.replace(/\D/g, '').replace(/^0/, '62');
 const waMessage = encodeURIComponent(
-  spmb.pendaftaran.pesan_wa || 'Halo Panitia SPMB SMP Wijaya Sukodono, saya ingin bertanya mengenai pendaftaran.'
+  spmb.pendaftaran.pesan_wa || `Halo Panitia SPMB ${pengaturan.nama_sekolah}, saya ingin bertanya mengenai pendaftaran.`
 );
 const waUrl = `https://wa.me/${waNumber}?text=${waMessage}`;
 ---
 
 <BaseLayout
-  title={`Informasi SPMB ${spmb.tahun_ajaran} — SMP Wijaya Sukodono`}
+  title={`Informasi SPMB ${spmb.tahun_ajaran} — ${pengaturan.nama_sekolah}`}
   description={spmb.hero.deskripsi}
   activeNav="spmb"
 >
@@ -19,7 +20,7 @@ const waUrl = `https://wa.me/${waNumber}?text=${waMessage}`;
     <!-- Background Image with Gradient Overlay -->
     <img
       src={spmb.hero.foto || '/images/hero/hero-ppdb.webp'}
-      alt={`Penerimaan Peserta Didik Baru SPMB SMP Wijaya Sukodono Tahun Ajaran ${spmb.tahun_ajaran}`}
+      alt={`Penerimaan Peserta Didik Baru SPMB ${pengaturan.nama_sekolah} Tahun Ajaran ${spmb.tahun_ajaran}`}
       class="absolute inset-0 w-full h-full object-cover object-center animate-hero-bg"
       width="1920"
       height="800"
@@ -91,7 +92,7 @@ const waUrl = `https://wa.me/${waNumber}?text=${waMessage}`;
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
         <div>
           <h2 class="text-xl sm:text-2xl font-bold text-ocean-950">Alur Pendaftaran Siswa Baru</h2>
-          <p class="text-xs sm:text-sm text-slate-600 mt-1">Ikuti 4 langkah mudah berikut untuk mendaftar di SMP Wijaya Sukodono.</p>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1">Ikuti {spmb.alur.length} langkah mudah berikut untuk mendaftar di {pengaturan.nama_sekolah}.</p>
         </div>
         {spmb.pendaftaran.brosur_pdf && (
           <a

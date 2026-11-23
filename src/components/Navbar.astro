@@ -1,5 +1,5 @@
 ---
-import { spmb } from '../utils/data';
+import { spmb, pengaturan } from '../utils/data';
 
 interface Props {
   activeNav?: string;
@@ -23,12 +23,16 @@ const navItems = [
     <div class="h-[72px] flex items-center justify-between gap-4">
       <!-- Brand -->
       <a href="/" class="flex items-center gap-3 text-left group focus:outline-none">
-        <svg viewBox="0 0 200 200" class="w-11 h-11 shrink-0 transition-transform duration-150 group-hover:scale-105" role="img" aria-label="Logo SMP Wijaya Sukodono">
+        <svg viewBox="0 0 200 200" class="w-11 h-11 shrink-0 transition-transform duration-150 group-hover:scale-105" role="img" aria-label={`Logo ${pengaturan.nama_sekolah}`}>
           <use href="#logo-smp-wijaya"></use>
         </svg>
         <div>
-          <div class="text-base sm:text-lg font-extrabold tracking-tight text-ocean-950 leading-tight">SMP WIJAYA</div>
-          <div class="text-[10.5px] font-mono font-semibold tracking-wider text-slate-500 uppercase">SUKODONO &bull; SIDOARJO</div>
+          <div class="text-base sm:text-lg font-extrabold tracking-tight text-ocean-950 leading-tight">
+            {pengaturan.nama_sekolah.toUpperCase()}
+          </div>
+          <div class="text-[10.5px] font-mono font-semibold tracking-wider text-slate-500 uppercase">
+            NPSN {pengaturan.npsn} &bull; SIDOARJO
+          </div>
         </div>
       </a>
 

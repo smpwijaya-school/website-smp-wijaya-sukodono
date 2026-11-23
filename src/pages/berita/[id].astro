@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
+import { pengaturan } from '../../utils/data';
 
 export async function getStaticPaths() {
   const posts = await getCollection('berita', ({ data }) => !data.draft);
@@ -25,7 +26,7 @@ function formatDate(date: Date) {
 }
 ---
 
-<BaseLayout title={`${entry.data.title} — SMP Wijaya Sukodono`} description={entry.data.ringkasan} activeNav="berita">
+<BaseLayout title={`${entry.data.title} — ${pengaturan.nama_sekolah}`} description={entry.data.ringkasan} activeNav="berita">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <a href="/berita" class="inline-flex items-center gap-1.5 text-sm font-semibold text-cerulean-600 hover:text-cerulean-700 mb-6">
       &larr; Kembali ke Daftar Berita
@@ -35,7 +36,7 @@ function formatDate(date: Date) {
       <div class="flex flex-wrap items-center gap-3 text-xs font-mono mb-4">
         <span class="px-2.5 py-1 rounded-full bg-wijayaCyan-50 text-cerulean-600 font-bold">{entry.data.kategori}</span>
         <span class="text-slate-500">{formatDate(entry.data.tanggal)}</span>
-        <span class="text-slate-400">&bull; Admin SMP Wijaya Sukodono</span>
+        <span class="text-slate-400">&bull; Admin {pengaturan.nama_sekolah}</span>
       </div>
 
       <h1 class="text-2xl sm:text-3xl font-extrabold text-ocean-950 leading-tight">
@@ -53,7 +54,7 @@ function formatDate(date: Date) {
             <div class="w-16 h-16 mb-3 opacity-90 relative z-10">
               <svg viewBox="0 0 200 200" class="w-full h-full"><use href="#logo-smp-wijaya"></use></svg>
             </div>
-            <div class="text-sm font-semibold text-sky-100 relative z-10">Dokumentasi &amp; Prestasi SMP Wijaya Sukodono</div>
+            <div class="text-sm font-semibold text-sky-100 relative z-10">Dokumentasi &amp; Prestasi {pengaturan.nama_sekolah}</div>
           </>
         )}
       </div>
