@@ -51,11 +51,11 @@
     }
   ],
   "hero_pages": {
-    "profil": "/images/hero/hero-profil.webp",
-    "fasilitas": "/images/hero/hero-fasilitas.webp",
-    "ekskul": "/images/hero/hero-ekskul.webp",
+    "profil": "/images/uploads/1000092607-1.jpg",
+    "fasilitas": "/images/uploads/1000092603.jpg",
+    "ekskul": "/images/uploads/1000092628.jpg",
     "guru": "/images/uploads/1000092612.jpg",
-    "berita": "/images/hero/hero-berita.webp",
-    "kontak": "/images/hero/hero-kontak.webp"
+    "berita": "/images/uploads/1000092595.jpg",
+    "kontak": "/images/uploads/1000092600.jpg"
   }
 }
