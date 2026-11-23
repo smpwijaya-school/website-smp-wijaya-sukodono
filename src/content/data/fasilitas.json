@@ -11,7 +11,13 @@
       "id": 2,
       "nama": "Laboratorium Komputer & TIK",
       "kategori": "Laboratorium",
-      "deskripsi": "Sarana praktik literasi digital, simulasi ANBK, dan pembelajaran informatika bagi seluruh siswa."
+      "deskripsi": "Sarana praktik literasi digital, simulasi ANBK, dan pembelajaran informatika bagi seluruh siswa.",
+      "foto": "/images/uploads/1000092635.jpg",
+      "galeri": [
+        "/images/uploads/1000092637.jpg",
+        "/images/uploads/1000092634.jpg",
+        "/images/uploads/1000092633.jpg"
+      ]
     },
     {
       "id": 3,
