@@ -58,6 +58,16 @@ Pengelolaan konten website tidak memerlukan akses server atau akun GitHub. Opera
 4. Pada website publik, foto-foto tersebut akan disajikan dalam tampilan modal lightbox interaktif lengkap dengan navigasi panah, thumbnail, dan penghitung foto.
 5. Klik **Save**.
 
+### D. Mengubah Foto & Konten Hero Utama (Beranda)
+1. Buka menu **Pengaturan Sekolah & Beranda** pada panel navigasi sisi kiri Pages CMS.
+2. Cari bagian **Hero Utama / Banner Beranda**:
+   - **Foto Latar Belakang Hero**: Klik kolom foto untuk mengunggah atau memilih foto sampul beranda baru (disarankan rasio mendatar 16:9, resolusi 1600×900 px, ukuran di bawah 500 KB dalam format WebP/JPG).
+   - **Teks Label / Badge Atas**: Sesuaikan teks badge di atas judul, atau biarkan kosong agar otomatis menggunakan `NPSN • AKREDITASI • SIDOARJO`.
+   - **Judul Utama Hero & Teks Sorotan Emas**: Sesuaikan kalimat utama beranda. Isian *Teks Sorotan Emas* akan otomatis diberi warna aksen emas almamater.
+   - **Deskripsi / Tagline Singkat**: Kalimat pengantar sekolah di bawah judul utama.
+   - **Tombol Utama & Tombol Kedua**: Sesuaikan teks tombol dan tautan tujuan (default mengarah ke `/spmb` dan `/profil`).
+3. Klik tombol **Save** di sudut kanan atas untuk mempublikasikan perubahan ke website.
+
 ---
 
 ## 4.4 Panduan Kompresi Gambar Sebelum Upload

@@ -2,6 +2,18 @@
   "nama_sekolah": "SMP Wijaya Sukodono",
   "npsn": "20540036",
   "akreditasi": "Terakreditasi B",
+  "hero": {
+    "foto": "/images/hero/hero-home.webp",
+    "badge": "",
+    "judul": "Membangun Generasi",
+    "judul_sorot": "Berilmu, Berkarakter,",
+    "judul_akhiran": "& Berprestasi",
+    "deskripsi": "Enam dekade mengabdi mencetak insan berakhlak mulia, unggul akademik, dan berprestasi di Pekarungan, Sukodono.",
+    "tombol_utama_teks": "",
+    "tombol_utama_link": "/spmb",
+    "tombol_sekunder_teks": "Profil Sekolah",
+    "tombol_sekunder_link": "/profil"
+  },
   "sambutan_kepsek": {
     "nama": "Yennis Fitriyan, S.E., M.Pd.",
     "foto": "",

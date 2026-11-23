@@ -3,6 +3,7 @@ import '../styles/global.css';
 import TopBarSPMB from '../components/TopBarSPMB.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { pengaturan } from '../utils/data';
 
 interface Props {
   title?: string;
@@ -46,7 +47,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://smpwijay
 
   <!-- Preload Critical Hero Image on Home -->
   {activeNav === 'home' && (
-    <link rel="preload" as="image" href="/images/hero/hero-home.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href={pengaturan.hero?.foto || '/images/hero/hero-home.webp'} fetchpriority="high" />
   )}
 
   <slot name="head" />

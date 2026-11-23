@@ -11,10 +11,24 @@ export const BeritaSchema = z.object({
   draft: z.boolean().default(false),
 });
 
+export const HeroHomeSchema = z.object({
+  foto: z.string().optional(),
+  badge: z.string().optional(),
+  judul: z.string().optional(),
+  judul_sorot: z.string().optional(),
+  judul_akhiran: z.string().optional(),
+  deskripsi: z.string().optional(),
+  tombol_utama_teks: z.string().optional(),
+  tombol_utama_link: z.string().optional(),
+  tombol_sekunder_teks: z.string().optional(),
+  tombol_sekunder_link: z.string().optional(),
+});
+
 export const PengaturanSchema = z.object({
   nama_sekolah: z.string(),
   npsn: z.string(),
   akreditasi: z.string(),
+  hero: HeroHomeSchema.optional(),
   sambutan_kepsek: z.object({
     nama: z.string(),
     foto: z.string().optional(),

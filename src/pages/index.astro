@@ -19,6 +19,15 @@ function formatDate(date: Date) {
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
   return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
 }
+
+const hero = pengaturan.hero || {};
+const heroFoto = hero.foto?.trim() || '/images/hero/hero-home.webp';
+const heroBadge = hero.badge?.trim() || `NPSN ${pengaturan.npsn} • ${pengaturan.akreditasi.toUpperCase()} • SIDOARJO`;
+const heroDeskripsi = hero.deskripsi?.trim() || 'Enam dekade mengabdi mencetak insan berakhlak mulia, unggul akademik, dan berprestasi di Pekarungan, Sukodono.';
+const heroTombolUtamaTeks = hero.tombol_utama_teks?.trim() || `Informasi SPMB ${spmb.tahun_ajaran}`;
+const heroTombolUtamaLink = hero.tombol_utama_link?.trim() || '/spmb';
+const heroTombolSekunderTeks = hero.tombol_sekunder_teks?.trim() || 'Profil Sekolah';
+const heroTombolSekunderLink = hero.tombol_sekunder_link?.trim() || '/profil';
 ---
 
 <BaseLayout
@@ -30,8 +39,8 @@ function formatDate(date: Date) {
   <div class="relative bg-ocean-950 text-white overflow-hidden">
     <!-- Background Image with Gradient Overlay -->
     <img
-      src="/images/hero/hero-home.webp"
-      alt="Gedung dan Lingkungan Kampus SMP Wijaya Sukodono"
+      src={heroFoto}
+      alt={`${pengaturan.nama_sekolah} - Kampus dan Lingkungan Sekolah`}
       class="absolute inset-0 w-full h-full object-cover object-center animate-hero-bg"
       width="1920"
       height="1080"
@@ -43,30 +52,50 @@ function formatDate(date: Date) {
 
     <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 text-center">
       <div class="inline-flex items-center px-3.5 py-1 rounded-full border border-white/20 bg-white/10 text-xs font-mono font-medium text-sky-100 mb-6 backdrop-blur-md animate-hero-badge">
-        NPSN {pengaturan.npsn} &bull; {pengaturan.akreditasi.toUpperCase()} &bull; SIDOARJO
+        {heroBadge}
       </div>
 
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.16] text-white animate-hero-title">
-        Membangun Generasi <span class="text-candiGold-400">Berilmu, Berkarakter,</span> &amp; Berprestasi
-      </h1>
+      {hero.judul_sorot ? (
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.16] text-white animate-hero-title">
+          {hero.judul || 'Membangun Generasi'}{' '}
+          <span class="text-candiGold-400">{hero.judul_sorot}</span>
+          {hero.judul_akhiran ? ` ${hero.judul_akhiran}` : ''}
+        </h1>
+      ) : hero.judul && hero.judul.includes('<') ? (
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.16] text-white animate-hero-title" set:html={hero.judul} />
+      ) : (
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.16] text-white animate-hero-title">
+          {hero.judul ? (
+            hero.judul
+          ) : (
+            <>
+              Membangun Generasi <span class="text-candiGold-400">Berilmu, Berkarakter,</span> &amp; Berprestasi
+            </>
+          )}
+        </h1>
+      )}
 
       <p class="text-base sm:text-lg text-sky-100/90 leading-relaxed max-w-xl mx-auto mt-5 animate-hero-desc">
-        Enam dekade mengabdi mencetak insan berakhlak mulia, unggul akademik, dan berprestasi di Pekarungan, Sukodono.
+        {heroDeskripsi}
       </p>
 
       <div class="flex flex-wrap items-center justify-center gap-3.5 pt-8 animate-hero-cta">
-        <a
-          href="/spmb"
-          class="px-6 py-3 rounded-lg bg-candiGold-400 hover:bg-yellow-300 text-ocean-950 font-bold text-sm sm:text-base shadow-lg transition transform hover:-translate-y-0.5 active:scale-[0.98] inline-block"
-        >
-          Informasi SPMB {spmb.tahun_ajaran}
-        </a>
-        <a
-          href="/profil"
-          class="px-6 py-3 rounded-lg border border-white/30 hover:bg-white/10 text-white font-semibold text-sm sm:text-base backdrop-blur-sm transition transform hover:-translate-y-0.5 active:scale-[0.98] inline-block"
-        >
-          Profil Sekolah
-        </a>
+        {heroTombolUtamaTeks && (
+          <a
+            href={heroTombolUtamaLink}
+            class="px-6 py-3 rounded-lg bg-candiGold-400 hover:bg-yellow-300 text-ocean-950 font-bold text-sm sm:text-base shadow-lg transition transform hover:-translate-y-0.5 active:scale-[0.98] inline-block"
+          >
+            {heroTombolUtamaTeks}
+          </a>
+        )}
+        {heroTombolSekunderTeks && (
+          <a
+            href={heroTombolSekunderLink}
+            class="px-6 py-3 rounded-lg border border-white/30 hover:bg-white/10 text-white font-semibold text-sm sm:text-base backdrop-blur-sm transition transform hover:-translate-y-0.5 active:scale-[0.98] inline-block"
+          >
+            {heroTombolSekunderTeks}
+          </a>
+        )}
       </div>
     </div>
   </div>

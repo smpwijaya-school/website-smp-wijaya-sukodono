@@ -100,6 +100,20 @@ content:
       - { name: nama_sekolah, label: "Nama Resmi Sekolah", type: string, required: true }
       - { name: npsn, label: "NPSN", type: string }
       - { name: akreditasi, label: "Akreditasi", type: string }
+      - name: hero
+        label: "Hero Utama / Banner Beranda"
+        type: object
+        fields:
+          - { name: foto, label: "Foto Latar Belakang Hero (Upload format WebP/JPG, 16:9, maks 1 MB)", type: image }
+          - { name: badge, label: "Teks Label / Badge Atas (Kosongkan untuk otomatis: NPSN • Akreditasi • Sidoarjo)", type: string }
+          - { name: judul, label: "Judul Utama Hero (Awal)", type: string }
+          - { name: judul_sorot, label: "Teks Sorotan Emas (Opsional, contoh: Berilmu, Berkarakter,)", type: string }
+          - { name: judul_akhiran, label: "Teks Lanjutan Judul (Opsional, contoh: & Berprestasi)", type: string }
+          - { name: deskripsi, label: "Deskripsi / Tagline Singkat Hero", type: text }
+          - { name: tombol_utama_teks, label: "Teks Tombol Utama (Kosongkan untuk otomatis: Informasi SPMB + Tahun)", type: string }
+          - { name: tombol_utama_link, label: "Tautan Tombol Utama (Default: /spmb)", type: string }
+          - { name: tombol_sekunder_teks, label: "Teks Tombol Kedua (Default: Profil Sekolah)", type: string }
+          - { name: tombol_sekunder_link, label: "Tautan Tombol Kedua (Default: /profil)", type: string }
       - name: sambutan_kepsek
         label: "Sambutan Kepala Sekolah"
         type: object
