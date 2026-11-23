@@ -56,6 +56,7 @@ export const PengaturanSchema = z.object({
     whatsapp: z.string(),
     email: z.string(),
     instagram: z.string().optional(),
+    tiktok: z.string().optional(),
     jam_layanan: z.string().optional(),
     maps_url: z.string().optional(),
   }),

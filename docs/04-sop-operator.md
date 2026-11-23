@@ -68,6 +68,13 @@ Pengelolaan konten website tidak memerlukan akses server atau akun GitHub. Opera
    - **Tombol Utama & Tombol Kedua**: Sesuaikan teks tombol dan tautan tujuan (default mengarah ke `/spmb` dan `/profil`).
 3. Klik tombol **Save** di sudut kanan atas untuk mempublikasikan perubahan ke website.
 
+### E. Mengubah Kontak Resmi & Media Sosial (Instagram & TikTok)
+1. Buka menu **Pengaturan Sekolah & Beranda** pada panel navigasi sisi kiri Pages CMS.
+2. Gulir ke bagian **Informasi Kontak Resmi**:
+   - **Alamat, Telepon & Nomor WhatsApp TU**: Sesuaikan nomor telepon kantor dan nomor WA layanan.
+   - **Link Instagram & Link TikTok Sekolah**: Masukkan atau perbarui tautan akun media sosial resmi sekolah. Tautan beserta ikon resminya akan otomatis muncul di bagian *footer* seluruh halaman dan halaman Kontak. Bila salah satu kolom dikosongkan, ikon media sosial tersebut otomatis tidak akan ditampilkan.
+3. Klik tombol **Save**.
+
 ---
 
 ## 4.4 Sistem Kompresi Gambar Otomatis & Panduan Pengunggahan

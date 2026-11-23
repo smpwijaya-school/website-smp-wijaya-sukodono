@@ -633,6 +633,23 @@ def build_sop_doc():
     ])
     doc.add_list_item("5.", [("Klik tombol ", False), ("Save", True), (".", False)])
 
+    doc.add_h2("D. Mengubah Kontak Resmi & Media Sosial (Instagram & TikTok)")
+    doc.add_list_item("1.", [
+        ("Buka menu ", False),
+        ("Pengaturan Sekolah & Beranda", True),
+        (" pada panel navigasi samping Pages CMS.", False)
+    ])
+    doc.add_list_item("2.", [
+        ("Gulir ke bagian ", False),
+        ("Informasi Kontak Resmi", True),
+        (": Perbarui nomor WhatsApp Tata Usaha, email resmi, tautan ", False),
+        ("Instagram", True),
+        (", dan tautan ", False),
+        ("TikTok Resmi Sekolah", True),
+        (". Ikon dan tautan media sosial akan otomatis tampil di footer seluruh halaman dan halaman Kontak website.", False)
+    ])
+    doc.add_list_item("3.", [("Klik tombol ", False), ("Save", True), (".", False)])
+
     doc.add_h1("4.4 Sistem Kompresi Gambar Otomatis & Panduan Pengunggahan")
     doc.add_callout(
         "KOMPRESI OTOMATIS AKTIF",

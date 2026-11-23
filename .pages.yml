@@ -142,6 +142,7 @@ content:
           - { name: whatsapp, label: "Nomor WA TU (08xxx / 628xxx)", type: string }
           - { name: email, label: "Email Resmi Sekolah", type: string }
           - { name: instagram, label: "Link Instagram Sekolah", type: string }
+          - { name: tiktok, label: "Link TikTok Sekolah", type: string }
           - { name: jam_layanan, label: "Jam Layanan Tata Usaha", type: string }
           - { name: maps_url, label: "Tautan / Embed Google Maps", type: string }
       - name: program_unggulan
