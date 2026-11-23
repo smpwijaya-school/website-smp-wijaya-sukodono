@@ -4,19 +4,22 @@
       "nama": "Yennis Fitriyan, S.E., M.Pd.",
       "jabatan": "Kepala Sekolah",
       "bidang": "Pimpinan",
-      "inisial": "YF"
+      "inisial": "YF",
+      "foto": "/images/uploads/1000092594-1.jpg"
     },
     {
       "nama": "Wakil Kepala Bidang Kurikulum",
       "jabatan": "Wakasek Kurikulum",
       "bidang": "Pimpinan",
-      "inisial": "WK"
+      "inisial": "WK",
+      "foto": "/images/uploads/1000092638.jpg"
     },
     {
       "nama": "Wakil Kepala Bidang Kesiswaan",
       "jabatan": "Wakasek Kesiswaan",
       "bidang": "Pimpinan",
-      "inisial": "KS"
+      "inisial": "KS",
+      "foto": "/images/uploads/1000092639.jpg"
     },
     {
       "nama": "Guru Bahasa Indonesia",
