@@ -95,6 +95,7 @@ website-smp-wijaya-sukodono/
 ├── .pages.yml                    # Konfigurasi dashboard admin Pages CMS
 ├── astro.config.mjs              # Konfigurasi Astro + Tailwind v4 + Sitemap
 ├── package.json                  # Dependensi dan build scripts
+├── wrangler.jsonc                # Konfigurasi Cloudflare Workers Static Assets & Routing
 ├── public/
 │   ├── favicon.svg               # Favicon vektor resmi
 │   ├── robots.txt                # Petunjuk spider mesin pencari

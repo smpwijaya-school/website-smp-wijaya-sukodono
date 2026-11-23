@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "sync": "astro sync",
     "check": "astro check",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "astro build && wrangler deploy"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",
