@@ -3,13 +3,11 @@
   "npsn": "20540036",
   "akreditasi": "Terakreditasi B",
   "hero": {
-    "foto": "/images/hero/hero-home.webp",
-    "badge": "",
+    "foto": "/images/uploads/1000092632.jpg",
     "judul": "Membangun Generasi",
     "judul_sorot": "Berilmu, Berkarakter,",
     "judul_akhiran": "& Berprestasi",
     "deskripsi": "Enam dekade mengabdi mencetak insan berakhlak mulia, unggul akademik, dan berprestasi di Pekarungan, Sukodono.",
-    "tombol_utama_teks": "",
     "tombol_utama_link": "/spmb",
     "tombol_sekunder_teks": "Profil Sekolah",
     "tombol_sekunder_link": "/profil"
@@ -17,7 +15,7 @@
   "sambutan_kepsek": {
     "judul": "Bersama Menyiapkan Generasi Unggul yang Siap Melangkah Lebih Jauh",
     "nama": "Yennis Fitriyan, S.E., M.Pd.",
-    "foto": "",
+    "foto": "/images/uploads/1000092594.jpg",
     "pesan": "Assalamu'alaikum warahmatullahi wabarakatuh. Puji syukur ke hadirat Allah SWT atas terselenggaranya laman informasi resmi SMP Wijaya Sukodono. Kehadiran website ini menjadi wujud komitmen kami dalam menghadirkan keterbukaan informasi, mendokumentasikan capaian prestasi siswa, serta memudahkan komunikasi antara sekolah, orang tua, alumni, dan masyarakat Sukodono.\n\nDengan pengalaman mendidik lebih dari enam dekade hingga angkatan Purna Widya ke-LXIV, kami bersyukur terus mengantarkan peserta didik lulus seratus persen dengan bekal karakter mulia, kemandirian, dan prestasi non-akademik yang membanggakan."
   },
   "kontak": {
@@ -26,7 +24,6 @@
     "whatsapp": "081331377724",
     "email": "info@smpwijayasukodono.sch.id",
     "instagram": "https://instagram.com/smpwijayasukodono",
-    "tiktok": "https://www.tiktok.com/@smpwijayasukodono",
     "jam_layanan": "Senin – Sabtu, 07.30 – 13.00 WIB (Minggu & Hari Libur Nasional tutup)",
     "maps_url": "https://www.google.com/maps?q=SMP+Wijaya+Sukodono+Pekarungan+Sidoarjo&output=embed"
   },
