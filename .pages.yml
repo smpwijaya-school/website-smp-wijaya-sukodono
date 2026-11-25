@@ -47,6 +47,13 @@ content:
         fields:
           - { name: label, label: "Label Badge Banner", type: string }
           - { name: teks, label: "Teks Pengumuman Banner", type: string }
+      - name: popup
+        label: "Pop-up Poster SPMB (Muncul Saat Website Dibuka jika Status Aktif)"
+        type: object
+        fields:
+          - { name: poster, label: "Gambar Poster SPMB (Rasio 3:4 / 4:5 / 1:1 / 16:9)", type: image }
+          - { name: cta_teks, label: "Teks Tombol CTA Pop-up (Default: Daftar SPMB Sekarang)", type: string }
+          - { name: cta_link, label: "Tautan Tombol CTA Pop-up (Default: /spmb)", type: string }
       - name: hero
         label: "Bagian Header / Hero SPMB"
         type: object

@@ -5,6 +5,11 @@
     "label": "SPMB 2026/2027",
     "teks": "Penerimaan Murid Baru SMP Wijaya Sukodono telah dibuka — Kuota terbatas."
   },
+  "popup": {
+    "poster": "",
+    "cta_teks": "Daftar SPMB Sekarang",
+    "cta_link": "/spmb"
+  },
   "hero": {
     "judul": "Sistem Penerimaan Murid Baru (SPMB) 2026/2027",
     "deskripsi": "Panduan lengkap alur pendaftaran, kelengkapan berkas, jadwal gelombang, dan informasi layanan pendaftaran calon siswa baru SMP Wijaya Sukodono.",

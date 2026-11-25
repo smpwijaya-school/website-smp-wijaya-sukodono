@@ -114,6 +114,11 @@ export const SpmbSchema = z.object({
     label: z.string().optional(),
     teks: z.string().optional(),
   }).optional(),
+  popup: z.object({
+    poster: z.string().optional(),
+    cta_teks: z.string().optional(),
+    cta_link: z.string().optional(),
+  }).optional(),
   hero: z.object({
     judul: z.string(),
     deskripsi: z.string(),
