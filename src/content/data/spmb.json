@@ -1,5 +1,5 @@
 {
-  "aktif": false,
+  "aktif": true,
   "tahun_ajaran": "2026/2027",
   "banner": {
     "label": "SPMB 2026/2027",
@@ -17,7 +17,6 @@
   "pendaftaran": {
     "link_formulir": "https://forms.google.com",
     "label_tombol": "Isi Formulir Online (Google Forms)",
-    "brosur_pdf": "",
     "kontak_wa": "6281331377724",
     "pesan_wa": "Halo Panitia SPMB SMP Wijaya Sukodono, saya ingin bertanya mengenai pendaftaran siswa baru."
   },
