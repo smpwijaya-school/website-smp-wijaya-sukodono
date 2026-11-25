@@ -2,12 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { spmb, pengaturan } from '../utils/data';
 
-const rawWa = spmb.pendaftaran.kontak_wa || pengaturan.kontak?.whatsapp || '6281331377724';
+const rawWa = spmb.pendaftaran.kontak_wa || pengaturan.kontak?.whatsapp || '';
 const waNumber = rawWa.replace(/\D/g, '').replace(/^0/, '62');
 const waMessage = encodeURIComponent(
   spmb.pendaftaran.pesan_wa || `Halo Panitia SPMB ${pengaturan.nama_sekolah}, saya ingin bertanya mengenai pendaftaran.`
 );
-const waUrl = `https://wa.me/${waNumber}?text=${waMessage}`;
+const waUrl = waNumber ? `https://wa.me/${waNumber}?text=${waMessage}` : '';
 ---
 
 <BaseLayout
@@ -69,19 +69,21 @@ const waUrl = `https://wa.me/${waNumber}?text=${waMessage}`;
               {spmb.pesan_tutup.keterangan ||
                 'Pendaftaran saat ini sedang ditutup. Silakan hubungi kantor Tata Usaha kami untuk informasi gelombang pendaftaran selanjutnya.'}
             </p>
-            <div class="pt-2">
-              <a
-                href={waUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-semibold transition shadow-sm"
-              >
-                <span>Tanya Informasi Kuota via WhatsApp TU</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </a>
-            </div>
+            {waUrl && (
+              <div class="pt-2">
+                <a
+                  href={waUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-semibold transition shadow-sm"
+                >
+                  <span>Tanya Informasi Kuota via WhatsApp TU</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -210,17 +212,19 @@ const waUrl = `https://wa.me/${waNumber}?text=${waMessage}`;
                 <span>Pendaftaran Online Ditutup</span>
               </span>
             )}
-            <a
-              href={waUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="px-5 py-3 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-ocean-950 text-sm font-semibold transition inline-flex items-center gap-2 shadow-xs"
-            >
-              <span>Tanya Panitia via WA</span>
-              <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2z" />
-              </svg>
-            </a>
+            {waUrl && (
+              <a
+                href={waUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-5 py-3 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-ocean-950 text-sm font-semibold transition inline-flex items-center gap-2 shadow-xs"
+              >
+                <span>Tanya Panitia via WA</span>
+                <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2z" />
+                </svg>
+              </a>
+            )}
           </div>
         </div>
       </div>

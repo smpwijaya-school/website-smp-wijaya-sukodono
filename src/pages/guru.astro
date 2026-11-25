@@ -6,12 +6,14 @@ import type { GuruItem } from '../content.config';
 const allGuru = (guruData.daftar || []) as GuruItem[];
 const defaultCategories = ['Semua', 'Pimpinan', 'Guru Mapel', 'Staf TU'];
 const categories = ['Semua', ...new Set([...defaultCategories.slice(1), ...allGuru.map(g => g.bidang).filter(Boolean)])];
-const heroFoto = pengaturan.hero_pages?.guru || '/images/hero/hero-guru.webp';
+const heroJudul = guruData.hero?.judul?.trim() || 'Direktori Tenaga Pendidik & Kependidikan';
+const heroDeskripsi = guruData.hero?.deskripsi?.trim() || `Tenaga pengajar berdedikasi dan staf Tata Usaha yang mendampingi perkembangan akademik dan karakter siswa ${pengaturan.nama_sekolah}.`;
+const heroFoto = guruData.hero?.foto?.trim() || pengaturan.hero_pages?.guru || '/images/hero/hero-guru.webp';
 ---
 
 <BaseLayout
-  title={`Direktori Guru & Staf — ${pengaturan.nama_sekolah}`}
-  description={`Daftar tenaga pendidik profesional dan staf kependidikan ${pengaturan.nama_sekolah} yang mendampingi proses belajar siswa.`}
+  title={`${heroJudul} — ${pengaturan.nama_sekolah}`}
+  description={heroDeskripsi}
   activeNav="guru"
 >
   <!-- Page Header -->
@@ -31,8 +33,8 @@ const heroFoto = pengaturan.hero_pages?.guru || '/images/hero/hero-guru.webp';
       <div class="inline-flex items-center px-3 py-1 rounded-full bg-ocean-900/80 border border-wijayaCyan-400/30 text-xs font-mono text-wijayaCyan-300 uppercase tracking-wider mb-3 animate-hero-badge">
         Beranda / Guru &amp; Staf
       </div>
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight animate-hero-title">Direktori Tenaga Pendidik &amp; Kependidikan</h1>
-      <p class="text-sky-100/90 mt-3 max-w-2xl text-base sm:text-lg leading-relaxed animate-hero-desc">Tenaga pengajar berdedikasi dan staf Tata Usaha yang mendampingi perkembangan akademik dan karakter siswa SMP Wijaya Sukodono.</p>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight animate-hero-title">{heroJudul}</h1>
+      <p class="text-sky-100/90 mt-3 max-w-2xl text-base sm:text-lg leading-relaxed animate-hero-desc">{heroDeskripsi}</p>
     </div>
   </div>
 

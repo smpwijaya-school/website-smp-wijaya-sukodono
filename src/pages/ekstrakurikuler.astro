@@ -6,12 +6,17 @@ import EkskulModal from '../components/EkskulModal.astro';
 const allEkskul = ekskulData.daftar;
 const defaultCategories = ['Semua', 'Olahraga', 'Seni & Budaya', 'Kepemimpinan', 'Keagamaan', 'Minat & Bakat'];
 const categories = ['Semua', ...new Set([...defaultCategories.slice(1), ...allEkskul.map(e => e.kategori).filter(Boolean)])];
-const heroFoto = pengaturan.hero_pages?.ekskul || '/images/hero/hero-ekskul.webp';
+const heroJudul = ekskulData.hero?.judul?.trim() || 'Ekstrakurikuler & Minat Bakat';
+const heroDeskripsi = ekskulData.hero?.deskripsi?.trim() || `Membina potensi peserta didik melalui wadah olahraga prestasi, seni kreasi, kedisiplinan kepemimpinan, dan kecintaan nilai religius di ${pengaturan.nama_sekolah}.`;
+const heroFoto = ekskulData.hero?.foto?.trim() || pengaturan.hero_pages?.ekskul || '/images/hero/hero-ekskul.webp';
+const ctaBadge = ekskulData.cta?.badge?.trim() || 'Penerimaan Murid Baru';
+const ctaJudul = ekskulData.cta?.judul?.trim() || `Asah Bakat dan Ukir Prestasi di ${pengaturan.nama_sekolah}`;
+const ctaDeskripsi = ekskulData.cta?.deskripsi?.trim() || 'Seluruh siswa kelas VII mendapatkan kesempatan bebas memilih ekstrakurikuler sesuai bakat dan minat masing-masing dengan fasilitas latihan yang memadai dan pembina yang berpengalaman.';
 ---
 
 <BaseLayout
-  title={`Ekstrakurikuler — ${pengaturan.nama_sekolah}`}
-  description={`Daftar kegiatan ekstrakurikuler unggulan di ${pengaturan.nama_sekolah}. Wadah pengembangan minat, bakat, karakter, kepemimpinan, dan prestasi non-akademik siswa.`}
+  title={`${heroJudul} — ${pengaturan.nama_sekolah}`}
+  description={heroDeskripsi}
   activeNav="ekskul"
 >
   <!-- Page Header -->
@@ -32,10 +37,10 @@ const heroFoto = pengaturan.hero_pages?.ekskul || '/images/hero/hero-ekskul.webp
         Beranda / Ekstrakurikuler
       </div>
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight animate-hero-title">
-        Ekstrakurikuler &amp; Minat Bakat
+        {heroJudul}
       </h1>
       <p class="text-sky-100/90 mt-3 max-w-2xl text-base sm:text-lg leading-relaxed animate-hero-desc">
-        Membina potensi peserta didik melalui wadah olahraga prestasi, seni kreasi, kedisiplinan kepemimpinan, dan kecintaan nilai religius.
+        {heroDeskripsi}
       </p>
     </div>
   </div>
@@ -199,13 +204,13 @@ const heroFoto = pengaturan.hero_pages?.ekskul || '/images/hero/hero-ekskul.webp
     <div class="mt-16 rounded-2xl bg-gradient-to-br from-ocean-950 via-ocean-900 to-ocean-950 text-white p-8 sm:p-10 border border-white/10 shadow-xl reveal">
       <div class="max-w-3xl">
         <div class="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-candiGold-400 font-mono text-xs font-semibold uppercase tracking-wider mb-4">
-          Penerimaan Murid Baru
+          {ctaBadge}
         </div>
         <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
-          Asah Bakat dan Ukir Prestasi di {pengaturan.nama_sekolah}
+          {ctaJudul}
         </h3>
         <p class="text-sky-100/90 text-sm sm:text-base mt-3 leading-relaxed">
-          Seluruh siswa kelas VII mendapatkan kesempatan bebas memilih ekstrakurikuler sesuai bakat dan minat masing-masing dengan fasilitas latihan yang memadai dan pembina yang berpengalaman.
+          {ctaDeskripsi}
         </p>
         <div class="flex flex-wrap gap-4 mt-6">
           <a

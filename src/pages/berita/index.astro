@@ -13,7 +13,9 @@ const defaultCategories = ['Semua', 'Kegiatan', 'Prestasi', 'Pengumuman', 'Akade
 const extractedCategories = allBerita.map(b => b.data.kategori).filter(Boolean);
 const categories = ['Semua', ...new Set([...defaultCategories.slice(1), ...extractedCategories])];
 
-const heroFoto = pengaturan.hero_pages?.berita || '/images/hero/hero-berita.webp';
+const heroJudul = pengaturan.halaman_berita?.judul?.trim() || 'Berita, Prestasi & Pengumuman';
+const heroDeskripsi = pengaturan.halaman_berita?.deskripsi?.trim() || `Dokumentasi kegiatan siswa, prestasi ekstrakurikuler, serta pengumuman resmi dari ${pengaturan.nama_sekolah}.`;
+const heroFoto = pengaturan.halaman_berita?.foto?.trim() || pengaturan.hero_pages?.berita || '/images/hero/hero-berita.webp';
 
 function formatDate(date: Date) {
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
@@ -21,7 +23,7 @@ function formatDate(date: Date) {
 }
 ---
 
-<BaseLayout title={`Berita & Prestasi — ${pengaturan.nama_sekolah}`} description={`Dokumentasi kegiatan siswa, prestasi ekstrakurikuler, serta pengumuman resmi dari ${pengaturan.nama_sekolah}.`} activeNav="berita">
+<BaseLayout title={`${heroJudul} — ${pengaturan.nama_sekolah}`} description={heroDeskripsi} activeNav="berita">
   <!-- Page Header -->
   <div class="relative bg-ocean-950 text-white py-14 lg:py-20 overflow-hidden">
     <!-- Background Image with Gradient Overlay -->
@@ -42,8 +44,8 @@ function formatDate(date: Date) {
       <div class="inline-flex items-center px-3 py-1 rounded-full bg-ocean-900/80 border border-wijayaCyan-400/30 text-xs font-mono text-wijayaCyan-300 uppercase tracking-wider mb-3 animate-hero-badge">
         Beranda / Berita
       </div>
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight animate-hero-title">Berita, Prestasi &amp; Pengumuman</h1>
-      <p class="text-sky-100/90 mt-3 max-w-2xl text-base sm:text-lg leading-relaxed animate-hero-desc">Dokumentasi kegiatan siswa, prestasi drumband &amp; olahraga, serta pengumuman resmi dari {pengaturan.nama_sekolah}.</p>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight animate-hero-title">{heroJudul}</h1>
+      <p class="text-sky-100/90 mt-3 max-w-2xl text-base sm:text-lg leading-relaxed animate-hero-desc">{heroDeskripsi}</p>
     </div>
   </div>
 

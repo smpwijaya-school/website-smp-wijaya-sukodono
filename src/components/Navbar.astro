@@ -6,6 +6,8 @@ interface Props {
 }
 
 const { activeNav = 'home' } = Astro.props;
+const logoSrc = pengaturan.logo?.trim() || '/images/logo-smp-wijaya.png';
+const subjudulBrand = pengaturan.subjudul_brand?.trim() || 'SIDOARJO';
 
 const navItems = [
   { key: 'home', label: 'Beranda', href: '/' },
@@ -23,13 +25,13 @@ const navItems = [
     <div class="h-[72px] flex items-center justify-between gap-4">
       <!-- Brand -->
       <a href="/" class="flex items-center gap-3 text-left group focus:outline-none">
-        <img src="/images/logo-smp-wijaya.png" alt={`Logo ${pengaturan.nama_sekolah}`} class="w-11 h-11 object-contain shrink-0 transition-transform duration-150 group-hover:scale-105" />
+        <img src={logoSrc} alt={`Logo ${pengaturan.nama_sekolah}`} class="w-11 h-11 object-contain shrink-0 transition-transform duration-150 group-hover:scale-105" />
         <div>
           <div class="text-base sm:text-lg font-extrabold tracking-tight text-ocean-950 leading-tight">
             {pengaturan.nama_sekolah.toUpperCase()}
           </div>
           <div class="text-[10.5px] font-mono font-semibold tracking-wider text-slate-500 uppercase">
-            NPSN {pengaturan.npsn} &bull; SIDOARJO
+            NPSN {pengaturan.npsn} &bull; {subjudulBrand}
           </div>
         </div>
       </a>

@@ -1,4 +1,8 @@
 {
+  "hero": {
+    "judul": "Sarana & Prasarana Sekolah",
+    "deskripsi": "Fasilitas belajar yang mendukung kegiatan akademik, praktikum sains & komputer, olahraga, serta pembinaan ibadah siswa."
+  },
   "daftar": [
     {
       "id": 1,

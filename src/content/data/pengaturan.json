@@ -2,6 +2,9 @@
   "nama_sekolah": "SMP Wijaya Sukodono",
   "npsn": "20540036",
   "akreditasi": "Terakreditasi B",
+  "subjudul_brand": "SIDOARJO",
+  "status_jenjang": "Swasta / SMP",
+  "logo": "/images/logo-smp-wijaya.png",
   "hero": {
     "foto": "/images/uploads/1000092632.jpg",
     "badge": "Terakreditasi B • NPSN 20540036",
@@ -16,6 +19,7 @@
   "sambutan_kepsek": {
     "judul": "Bersama Menyiapkan Generasi Unggul yang Siap Melangkah Lebih Jauh",
     "nama": "Yennis Fitriyan, S.E., M.Pd.",
+    "inisial": "YF",
     "foto": "/images/uploads/1000092594.jpg",
     "pesan": "Assalamu'alaikum warahmatullahi wabarakatuh. Puji syukur ke hadirat Allah SWT atas terselenggaranya laman informasi resmi SMP Wijaya Sukodono. Kehadiran website ini menjadi wujud komitmen kami dalam menghadirkan keterbukaan informasi, mendokumentasikan capaian prestasi siswa, serta memudahkan komunikasi antara sekolah, orang tua, alumni, dan masyarakat Sukodono.\n\nDengan pengalaman mendidik lebih dari enam dekade hingga angkatan Purna Widya ke-LXIV, kami bersyukur terus mengantarkan peserta didik lulus seratus persen dengan bekal karakter mulia, kemandirian, dan prestasi non-akademik yang membanggakan."
   },
@@ -51,6 +55,31 @@
       "deskripsi": "Pembiasaan ibadah harian, literasi pagi, OSIS, Pramuka, dan Paskibra untuk membentuk pribadi tangguh dan santun."
     }
   ],
+  "beranda": {
+    "label_sambutan": "Sambutan Kepala Sekolah",
+    "label_program": "Pilar Pendidikan",
+    "judul_program": "Program Unggulan Sekolah",
+    "label_pimpinan": "Pimpinan Sekolah",
+    "judul_pimpinan": "Pimpinan & Manajemen",
+    "label_fasilitas": "Sarana Prasarana",
+    "judul_fasilitas": "Fasilitas Pendukung Belajar",
+    "label_berita": "Kabar Sekolah",
+    "judul_berita": "Berita & Prestasi Terbaru",
+    "cta_judul": "Bergabunglah Bersama Keluarga Besar SMP Wijaya Sukodono",
+    "cta_deskripsi_aktif": "Kunjungi halaman informasi SPMB untuk melihat syarat berkas, jadwal gelombang, atau hubungi langsung panitia Tata Usaha kami.",
+    "cta_deskripsi_tutup": "Pendaftaran saat ini sedang ditutup. Anda dapat melihat informasi gelombang, persyaratan berkas, atau menghubungi langsung kantor Tata Usaha kami."
+  },
+  "halaman_berita": {
+    "judul": "Berita, Prestasi & Pengumuman",
+    "deskripsi": "Dokumentasi kegiatan siswa, prestasi drumband & olahraga, serta pengumuman resmi dari SMP Wijaya Sukodono."
+  },
+  "halaman_kontak": {
+    "judul": "Hubungi SMP Wijaya Sukodono",
+    "deskripsi": "Informasi alamat resmi, nomor telepon kantor, layanan WhatsApp Tata Usaha, dan peta lokasi sekolah."
+  },
+  "footer": {
+    "deskripsi": "Lembaga pendidikan menengah pertama di Desa Pekarungan, Sukodono, Sidoarjo yang berkomitmen mencetak generasi berkarakter, berilmu, dan berprestasi."
+  },
   "hero_pages": {
     "profil": "/images/uploads/1000092607-1.jpg",
     "fasilitas": "/images/uploads/1000092603.jpg",

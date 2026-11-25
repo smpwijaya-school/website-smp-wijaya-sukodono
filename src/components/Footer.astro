@@ -3,6 +3,9 @@ import { pengaturan, spmb } from '../utils/data';
 
 const cleanWa = (pengaturan.kontak.whatsapp || '').replace(/\D/g, '').replace(/^0/, '62');
 const currentYear = new Date().getFullYear();
+const logoSrc = pengaturan.logo?.trim() || '/images/logo-smp-wijaya.png';
+const footerDesc = pengaturan.footer?.deskripsi?.trim() || pengaturan.hero?.deskripsi || '';
+const hakCipta = pengaturan.footer?.hak_cipta?.trim() || `© ${currentYear} ${pengaturan.nama_sekolah}. Hak Cipta Dilindungi.`;
 ---
 
 <footer class="bg-ocean-950 text-slate-300 border-t border-white/10 mt-auto">
@@ -12,16 +15,18 @@ const currentYear = new Date().getFullYear();
       <div class="md:col-span-4 space-y-4">
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-xl bg-white/10 p-1 shrink-0">
-            <img src="/images/logo-smp-wijaya.png" alt={`Logo ${pengaturan.nama_sekolah}`} class="w-full h-full object-contain" />
+            <img src={logoSrc} alt={`Logo ${pengaturan.nama_sekolah}`} class="w-full h-full object-contain" />
           </div>
           <div>
             <div class="text-white font-extrabold text-lg leading-tight">{pengaturan.nama_sekolah.toUpperCase()}</div>
             <div class="text-[11px] font-mono text-wijayaCyan-400">NPSN: {pengaturan.npsn} &bull; {pengaturan.akreditasi.toUpperCase()}</div>
           </div>
         </div>
-        <p class="text-sm text-slate-300/90 leading-relaxed">
-          {pengaturan.hero?.deskripsi || 'Lembaga pendidikan menengah pertama di Desa Pekarungan, Sukodono, Sidoarjo yang berkomitmen mencetak generasi berkarakter, berilmu, dan berprestasi.'}
-        </p>
+        {footerDesc && (
+          <p class="text-sm text-slate-300/90 leading-relaxed">
+            {footerDesc}
+          </p>
+        )}
       </div>
 
       <!-- Col 2: Navigasi Profil -->
@@ -103,7 +108,7 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-400">
-      <div>&copy; {currentYear} {pengaturan.nama_sekolah}. Hak Cipta Dilindungi.</div>
+      <div>{hakCipta}</div>
       <div>
         Dikembangkan oleh <a href="https://rohmadaditya.my.id" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-candiGold-400 transition underline underline-offset-4 font-medium">Rohmad Aditya</a>
       </div>

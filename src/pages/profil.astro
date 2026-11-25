@@ -91,7 +91,7 @@ const filosofiList = Array.isArray(frontmatter.filosofi_logo) && frontmatter.fil
           <dl class="divide-y divide-slate-100 text-sm">
             <div class="px-5 py-3 flex justify-between gap-4"><dt class="text-slate-500">Nama Sekolah</dt><dd class="font-semibold text-ocean-950 text-right">{pengaturan.nama_sekolah}</dd></div>
             <div class="px-5 py-3 flex justify-between gap-4"><dt class="text-slate-500">NPSN</dt><dd class="font-mono font-semibold text-cerulean-600">{pengaturan.npsn}</dd></div>
-            <div class="px-5 py-3 flex justify-between gap-4"><dt class="text-slate-500">Status / Jenjang</dt><dd class="font-semibold text-ocean-950">Swasta / SMP</dd></div>
+            <div class="px-5 py-3 flex justify-between gap-4"><dt class="text-slate-500">Status / Jenjang</dt><dd class="font-semibold text-ocean-950">{pengaturan.status_jenjang || 'Swasta / SMP'}</dd></div>
             <div class="px-5 py-3 flex justify-between gap-4"><dt class="text-slate-500">Akreditasi</dt><dd class="font-semibold text-ocean-950">{pengaturan.akreditasi}</dd></div>
             <div class="px-5 py-3 flex justify-between gap-4"><dt class="text-slate-500">Kepala Sekolah</dt><dd class="font-semibold text-ocean-950 text-right">{pengaturan.sambutan_kepsek.nama}</dd></div>
             <div class="px-5 py-3 flex justify-between gap-4"><dt class="text-slate-500">Alamat</dt><dd class="font-medium text-slate-700 text-right">{pengaturan.kontak.alamat}</dd></div>
@@ -129,7 +129,7 @@ const filosofiList = Array.isArray(frontmatter.filosofi_logo) && frontmatter.fil
       <div class="grid lg:grid-cols-12 gap-8 items-center">
         <div class="lg:col-span-4 flex flex-col items-center text-center">
           <div class="w-52 h-52 rounded-2xl bg-slate-50 border border-slate-200 p-5 flex items-center justify-center">
-            <img src="/images/logo-smp-wijaya.png" alt={`Logo ${pengaturan.nama_sekolah}`} class="w-full h-full object-contain" />
+            <img src={pengaturan.logo?.trim() || '/images/logo-smp-wijaya.png'} alt={`Logo ${pengaturan.nama_sekolah}`} class="w-full h-full object-contain" />
           </div>
           <div class="mt-4 font-bold text-ocean-950">Lambang Resmi {pengaturan.nama_sekolah}</div>
           <div class="text-xs text-slate-500 mt-1">Sumber palet warna resmi identitas digital sekolah</div>

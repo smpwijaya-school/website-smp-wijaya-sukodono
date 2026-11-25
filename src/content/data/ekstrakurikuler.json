@@ -1,4 +1,13 @@
 {
+  "hero": {
+    "judul": "Ekstrakurikuler & Minat Bakat",
+    "deskripsi": "Membina potensi peserta didik melalui wadah olahraga prestasi, seni kreasi, kedisiplinan kepemimpinan, dan kecintaan nilai religius."
+  },
+  "cta": {
+    "badge": "Penerimaan Murid Baru",
+    "judul": "Asah Bakat dan Ukir Prestasi di SMP Wijaya Sukodono",
+    "deskripsi": "Seluruh siswa kelas VII mendapatkan kesempatan bebas memilih ekstrakurikuler sesuai bakat dan minat masing-masing dengan fasilitas latihan yang memadai dan pembina yang berpengalaman."
+  },
   "daftar": [
     {
       "id": 1,

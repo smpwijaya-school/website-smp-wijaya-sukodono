@@ -38,13 +38,21 @@ const defaultPrograms = [
 const programs = (pengaturan.program_unggulan && pengaturan.program_unggulan.length > 0)
   ? pengaturan.program_unggulan
   : defaultPrograms;
+
+const logoSrc = pengaturan.logo?.trim() || '/images/logo-smp-wijaya.png';
+const beranda = pengaturan.beranda || {};
+const kepsekInisial =
+  pengaturan.sambutan_kepsek.inisial?.trim() ||
+  pengaturan.sambutan_kepsek.nama
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase())
+    .join('') ||
+  'KS';
 ---
 
-<BaseLayout
-  title="SMP Wijaya Sukodono — Website Resmi Sekolah (NPSN: 20540036)"
-  description="Website resmi SMP Wijaya Sukodono, Desa Pekarungan, Kec. Sukodono, Kab. Sidoarjo, Jawa Timur. Informasi profil sekolah, fasilitas, direktori guru, berita prestasi, dan SPMB 2026/2027."
-  activeNav="home"
->
+<BaseLayout activeNav="home">
   <!-- Hero Section -->
   <div class="relative bg-ocean-950 text-white overflow-hidden">
     <!-- Background Image with Gradient Overlay -->
@@ -122,16 +130,16 @@ const programs = (pengaturan.program_unggulan && pengaturan.program_unggulan.len
                 <img src={pengaturan.sambutan_kepsek.foto} alt={pengaturan.sambutan_kepsek.nama} class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105" />
               ) : (
                 <>
-                  <div class="w-28 h-28 rounded-full bg-wijayaCyan-50 border-4 border-candiGold-400 flex items-center justify-center text-ocean-950 text-3xl font-extrabold mb-4 shadow-lg transition duration-300 group-hover:scale-105">YF</div>
+                  <div class="w-28 h-28 rounded-full bg-wijayaCyan-50 border-4 border-candiGold-400 flex items-center justify-center text-ocean-950 text-3xl font-extrabold mb-4 shadow-lg transition duration-300 group-hover:scale-105">{kepsekInisial}</div>
                   <div class="text-white font-bold text-lg">{pengaturan.sambutan_kepsek.nama}</div>
-                  <div class="text-xs font-mono text-wijayaCyan-400 uppercase tracking-wider mt-1">Kepala SMP Wijaya Sukodono</div>
+                  <div class="text-xs font-mono text-wijayaCyan-400 uppercase tracking-wider mt-1">Kepala {pengaturan.nama_sekolah}</div>
                 </>
               )}
             </div>
           </div>
         </div>
         <div class="lg:col-span-8 space-y-5 reveal delay-150">
-          <div class="text-xs font-mono font-semibold uppercase tracking-widest text-cerulean-600">Sambutan Kepala Sekolah</div>
+          <div class="text-xs font-mono font-semibold uppercase tracking-widest text-cerulean-600">{beranda.label_sambutan || 'Sambutan Kepala Sekolah'}</div>
           <h2 class="text-2xl sm:text-3xl font-bold text-ocean-950 tracking-tight">
             {pengaturan.sambutan_kepsek.judul || 'Bersama Menyiapkan Generasi Unggul yang Siap Melangkah Lebih Jauh'}
           </h2>
@@ -141,7 +149,7 @@ const programs = (pengaturan.program_unggulan && pengaturan.program_unggulan.len
             ))
           ) : (
             <p class="text-slate-600 leading-relaxed">
-              Assalamu'alaikum warahmatullahi wabarakatuh. Puji syukur ke hadirat Allah SWT atas terselenggaranya laman informasi resmi SMP Wijaya Sukodono. Kehadiran website ini menjadi wujud komitmen kami dalam menghadirkan keterbukaan informasi, mendokumentasikan capaian prestasi siswa, serta memudahkan komunikasi antara sekolah, orang tua, alumni, dan masyarakat Sukodono.
+              Assalamu'alaikum warahmatullahi wabarakatuh. Puji syukur ke hadirat Allah SWT atas terselenggaranya laman informasi resmi {pengaturan.nama_sekolah}. Kehadiran website ini menjadi wujud komitmen kami dalam menghadirkan keterbukaan informasi, mendokumentasikan capaian prestasi siswa, serta memudahkan komunikasi antara sekolah, orang tua, alumni, dan masyarakat.
             </p>
           )}
           <div class="pt-2 flex flex-wrap items-center gap-6">
@@ -164,8 +172,8 @@ const programs = (pengaturan.program_unggulan && pengaturan.program_unggulan.len
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 reveal">
         <div>
-          <div class="text-xs font-mono font-semibold uppercase tracking-widest text-cerulean-600">Pilar Pendidikan</div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-ocean-950 mt-1">Program Unggulan Sekolah</h2>
+          <div class="text-xs font-mono font-semibold uppercase tracking-widest text-cerulean-600">{beranda.label_program || 'Pilar Pendidikan'}</div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-ocean-950 mt-1">{beranda.judul_program || 'Program Unggulan Sekolah'}</h2>
         </div>
         <div class="flex flex-col sm:items-end gap-1">
           <a href="/ekstrakurikuler" class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-cerulean-600 hover:text-cerulean-700 transition group mt-1">
@@ -194,8 +202,8 @@ const programs = (pengaturan.program_unggulan && pengaturan.program_unggulan.len
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 reveal">
           <div>
-            <div class="text-xs font-mono font-semibold uppercase tracking-widest text-cerulean-600">Pimpinan Sekolah</div>
-            <h2 class="text-2xl sm:text-3xl font-bold text-ocean-950 mt-1">Pimpinan &amp; Manajemen</h2>
+            <div class="text-xs font-mono font-semibold uppercase tracking-widest text-cerulean-600">{beranda.label_pimpinan || 'Pimpinan Sekolah'}</div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-ocean-950 mt-1">{beranda.judul_pimpinan || 'Pimpinan & Manajemen'}</h2>
           </div>
           <a href="/guru" class="inline-flex items-center gap-1.5 text-sm font-semibold text-cerulean-600 hover:text-cerulean-700 transition group">
             <span>Lihat Seluruh Guru &amp; Staf</span>
@@ -251,8 +259,8 @@ const programs = (pengaturan.program_unggulan && pengaturan.program_unggulan.len
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 reveal">
         <div>
-          <div class="text-xs font-mono font-semibold uppercase tracking-widest text-cerulean-600">Sarana Prasarana</div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-ocean-950 mt-1">Fasilitas Pendukung Belajar</h2>
+          <div class="text-xs font-mono font-semibold uppercase tracking-widest text-cerulean-600">{beranda.label_fasilitas || 'Sarana Prasarana'}</div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-ocean-950 mt-1">{beranda.judul_fasilitas || 'Fasilitas Pendukung Belajar'}</h2>
         </div>
         <a href="/fasilitas" class="inline-flex items-center gap-1.5 text-sm font-semibold text-cerulean-600 hover:text-cerulean-700 transition group">
           <span>Lihat Semua Fasilitas</span>
@@ -312,8 +320,8 @@ const programs = (pengaturan.program_unggulan && pengaturan.program_unggulan.len
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 reveal">
         <div>
-          <div class="text-xs font-mono font-semibold uppercase tracking-widest text-cerulean-600">Kabar Sekolah</div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-ocean-950 mt-1">Berita &amp; Prestasi Terbaru</h2>
+          <div class="text-xs font-mono font-semibold uppercase tracking-widest text-cerulean-600">{beranda.label_berita || 'Kabar Sekolah'}</div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-ocean-950 mt-1">{beranda.judul_berita || 'Berita & Prestasi Terbaru'}</h2>
         </div>
         <a href="/berita" class="inline-flex items-center gap-1.5 text-sm font-semibold text-cerulean-600 hover:text-cerulean-700 transition group">
           <span>Lihat Semua Berita</span>
@@ -328,7 +336,7 @@ const programs = (pengaturan.program_unggulan && pengaturan.program_unggulan.len
                 <img src={item.data.thumbnail} alt={item.data.title} class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-105" />
               ) : (
                 <div class="absolute inset-0 flex items-center justify-center opacity-30">
-                  <img src="/images/logo-smp-wijaya.png" alt={`Logo ${pengaturan.nama_sekolah}`} class="w-16 h-16 object-contain transition-transform duration-500 group-hover:scale-110" />
+                  <img src={logoSrc} alt={`Logo ${pengaturan.nama_sekolah}`} class="w-16 h-16 object-contain transition-transform duration-500 group-hover:scale-110" />
                 </div>
               )}
               <span class="relative z-10 self-start px-2.5 py-1 rounded-full bg-candiGold-400 text-ocean-950 font-mono text-[11px] font-bold shadow-sm">{item.data.kategori}</span>
@@ -357,11 +365,11 @@ const programs = (pengaturan.program_unggulan && pengaturan.program_unggulan.len
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
       <div class="space-y-2 max-w-2xl">
         <div class="text-xs font-mono uppercase tracking-widest text-candiGold-400 font-semibold">SPMB Tahun Ajaran {spmb.tahun_ajaran}</div>
-        <h2 class="text-2xl sm:text-3xl font-bold">Bergabunglah Bersama Keluarga Besar {pengaturan.nama_sekolah}</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold">{beranda.cta_judul || `Bergabunglah Bersama Keluarga Besar ${pengaturan.nama_sekolah}`}</h2>
         <p class="text-sm sm:text-base text-sky-100/90">
           {spmb.aktif
-            ? 'Kunjungi halaman informasi SPMB untuk melihat syarat berkas, jadwal gelombang, atau hubungi langsung panitia Tata Usaha kami.'
-            : 'Pendaftaran saat ini sedang ditutup. Anda dapat melihat informasi gelombang, persyaratan berkas, atau menghubungi langsung kantor Tata Usaha kami.'}
+            ? (beranda.cta_deskripsi_aktif || 'Kunjungi halaman informasi SPMB untuk melihat syarat berkas, jadwal gelombang, atau hubungi langsung panitia Tata Usaha kami.')
+            : (beranda.cta_deskripsi_tutup || 'Pendaftaran saat ini sedang ditutup. Anda dapat melihat informasi gelombang, persyaratan berkas, atau menghubungi langsung kantor Tata Usaha kami.')}
         </p>
       </div>
       <div class="flex flex-wrap gap-3">

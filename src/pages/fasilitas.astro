@@ -6,12 +6,14 @@ import { fasilitasData, pengaturan } from '../utils/data';
 const allFacilities = fasilitasData.daftar;
 const defaultCategories = ['Semua', 'Akademik', 'Laboratorium', 'Olahraga & Ibadah'];
 const categories = ['Semua', ...new Set([...defaultCategories.slice(1), ...allFacilities.map(f => f.kategori).filter(Boolean)])];
-const heroFoto = pengaturan.hero_pages?.fasilitas || '/images/hero/hero-fasilitas.webp';
+const heroJudul = fasilitasData.hero?.judul?.trim() || 'Sarana & Prasarana Sekolah';
+const heroDeskripsi = fasilitasData.hero?.deskripsi?.trim() || `Fasilitas belajar yang mendukung kegiatan akademik, praktikum sains & komputer, olahraga, serta pembinaan ibadah siswa di ${pengaturan.nama_sekolah}.`;
+const heroFoto = fasilitasData.hero?.foto?.trim() || pengaturan.hero_pages?.fasilitas || '/images/hero/hero-fasilitas.webp';
 ---
 
 <BaseLayout
-  title={`Fasilitas & Sarana Prasarana — ${pengaturan.nama_sekolah}`}
-  description={`Fasilitas belajar yang mendukung kegiatan akademik, praktikum sains, olahraga, dan pembinaan ibadah siswa di ${pengaturan.nama_sekolah}.`}
+  title={`${heroJudul} — ${pengaturan.nama_sekolah}`}
+  description={heroDeskripsi}
   activeNav="fasilitas"
 >
   <!-- Page Header -->
@@ -31,8 +33,8 @@ const heroFoto = pengaturan.hero_pages?.fasilitas || '/images/hero/hero-fasilita
       <div class="inline-flex items-center px-3 py-1 rounded-full bg-ocean-900/80 border border-wijayaCyan-400/30 text-xs font-mono text-wijayaCyan-300 uppercase tracking-wider mb-3 animate-hero-badge">
         Beranda / Fasilitas
       </div>
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight animate-hero-title">Sarana &amp; Prasarana Sekolah</h1>
-      <p class="text-sky-100/90 mt-3 max-w-2xl text-base sm:text-lg leading-relaxed animate-hero-desc">Fasilitas belajar yang mendukung kegiatan akademik, praktikum sains &amp; komputer, olahraga, serta pembinaan ibadah siswa.</p>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight animate-hero-title">{heroJudul}</h1>
+      <p class="text-sky-100/90 mt-3 max-w-2xl text-base sm:text-lg leading-relaxed animate-hero-desc">{heroDeskripsi}</p>
     </div>
   </div>
 

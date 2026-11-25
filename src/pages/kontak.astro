@@ -3,13 +3,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { pengaturan } from '../utils/data';
 
 const cleanWa = (pengaturan.kontak.whatsapp || '').replace(/\D/g, '').replace(/^0/, '62');
-const heroFoto = pengaturan.hero_pages?.kontak || '/images/hero/hero-kontak.webp';
+const heroJudul = pengaturan.halaman_kontak?.judul?.trim() || `Hubungi ${pengaturan.nama_sekolah}`;
+const heroDeskripsi = pengaturan.halaman_kontak?.deskripsi?.trim() || 'Informasi alamat resmi, nomor telepon kantor, layanan WhatsApp Tata Usaha, dan peta lokasi sekolah.';
+const heroFoto = pengaturan.halaman_kontak?.foto?.trim() || pengaturan.hero_pages?.kontak || '/images/hero/hero-kontak.webp';
 const jamLayanan = pengaturan.kontak.jam_layanan || 'Senin – Sabtu, 07.30 – 13.00 WIB (Minggu & Hari Libur Nasional tutup)';
 const mapsSrc = pengaturan.kontak.maps_url || `https://www.google.com/maps?q=${encodeURIComponent(pengaturan.nama_sekolah + ' ' + pengaturan.kontak.alamat)}&output=embed`;
 ---
 
 <BaseLayout
-  title={`Hubungi Kami — ${pengaturan.nama_sekolah}`}
+  title={`${heroJudul} — ${pengaturan.nama_sekolah}`}
   description={`Informasi kontak resmi ${pengaturan.nama_sekolah}, ${pengaturan.kontak.alamat}: nomor telepon, WhatsApp Tata Usaha, email, dan peta lokasi.`}
   activeNav="kontak"
 >
@@ -30,8 +32,8 @@ const mapsSrc = pengaturan.kontak.maps_url || `https://www.google.com/maps?q=${e
       <div class="inline-flex items-center px-3 py-1 rounded-full bg-ocean-900/80 border border-wijayaCyan-400/30 text-xs font-mono text-wijayaCyan-300 uppercase tracking-wider mb-3 animate-hero-badge">
         Beranda / Kontak
       </div>
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight animate-hero-title">Hubungi {pengaturan.nama_sekolah}</h1>
-      <p class="text-sky-100/90 mt-3 max-w-2xl text-base sm:text-lg leading-relaxed animate-hero-desc">Informasi alamat resmi, nomor telepon kantor, layanan WhatsApp Tata Usaha, dan peta lokasi sekolah.</p>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight animate-hero-title">{heroJudul}</h1>
+      <p class="text-sky-100/90 mt-3 max-w-2xl text-base sm:text-lg leading-relaxed animate-hero-desc">{heroDeskripsi}</p>
     </div>
   </div>
 
@@ -94,19 +96,21 @@ const mapsSrc = pengaturan.kontak.maps_url || `https://www.google.com/maps?q=${e
               </p>
             </div>
           )}
-          <div class="pt-2">
-            <a
-              href={`https://wa.me/${cleanWa}?text=Halo%20Tata%20Usaha%20${encodeURIComponent(pengaturan.nama_sekolah)},%20saya%20ingin%20menanyakan%20informasi%20sekolah.`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold shadow-sm transition"
-            >
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2z" />
-              </svg>
-              <span>Chat WhatsApp Tata Usaha</span>
-            </a>
-          </div>
+          {cleanWa && (
+            <div class="pt-2">
+              <a
+                href={`https://wa.me/${cleanWa}?text=Halo%20Tata%20Usaha%20${encodeURIComponent(pengaturan.nama_sekolah)},%20saya%20ingin%20menanyakan%20informasi%20sekolah.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold shadow-sm transition"
+              >
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2z" />
+                </svg>
+                <span>Chat WhatsApp Tata Usaha</span>
+              </a>
+            </div>
+          )}
         </div>
       </div>
 

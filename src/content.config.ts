@@ -30,6 +30,12 @@ export const ProgramUnggulanItemSchema = z.object({
   deskripsi: z.string(),
 });
 
+export const PageHeroSchema = z.object({
+  judul: z.string().optional(),
+  deskripsi: z.string().optional(),
+  foto: z.string().optional(),
+});
+
 export const HeroPagesSchema = z.object({
   profil: z.string().optional(),
   fasilitas: z.string().optional(),
@@ -39,14 +45,33 @@ export const HeroPagesSchema = z.object({
   kontak: z.string().optional(),
 });
 
+export const BerandaSectionSchema = z.object({
+  label_sambutan: z.string().optional(),
+  label_program: z.string().optional(),
+  judul_program: z.string().optional(),
+  label_pimpinan: z.string().optional(),
+  judul_pimpinan: z.string().optional(),
+  label_fasilitas: z.string().optional(),
+  judul_fasilitas: z.string().optional(),
+  label_berita: z.string().optional(),
+  judul_berita: z.string().optional(),
+  cta_judul: z.string().optional(),
+  cta_deskripsi_aktif: z.string().optional(),
+  cta_deskripsi_tutup: z.string().optional(),
+});
+
 export const PengaturanSchema = z.object({
   nama_sekolah: z.string(),
   npsn: z.string(),
   akreditasi: z.string(),
+  subjudul_brand: z.string().optional(),
+  status_jenjang: z.string().optional(),
+  logo: z.string().optional(),
   hero: HeroHomeSchema.optional(),
   sambutan_kepsek: z.object({
     judul: z.string().optional(),
     nama: z.string(),
+    inisial: z.string().optional(),
     foto: z.string().optional(),
     pesan: z.string(),
   }),
@@ -61,6 +86,13 @@ export const PengaturanSchema = z.object({
     maps_url: z.string().optional(),
   }),
   program_unggulan: z.array(ProgramUnggulanItemSchema).optional(),
+  beranda: BerandaSectionSchema.optional(),
+  halaman_berita: PageHeroSchema.optional(),
+  halaman_kontak: PageHeroSchema.optional(),
+  footer: z.object({
+    deskripsi: z.string().optional(),
+    hak_cipta: z.string().optional(),
+  }).optional(),
   hero_pages: HeroPagesSchema.optional(),
 });
 
@@ -73,6 +105,7 @@ export const GuruItemSchema = z.object({
 });
 
 export const GuruSchema = z.object({
+  hero: PageHeroSchema.optional(),
   daftar: z.array(GuruItemSchema),
 });
 
@@ -86,6 +119,7 @@ export const FasilitasItemSchema = z.object({
 });
 
 export const FasilitasSchema = z.object({
+  hero: PageHeroSchema.optional(),
   daftar: z.array(FasilitasItemSchema),
 });
 
@@ -104,6 +138,12 @@ export const EkstrakurikulerItemSchema = z.object({
 });
 
 export const EkstrakurikulerSchema = z.object({
+  hero: PageHeroSchema.optional(),
+  cta: z.object({
+    badge: z.string().optional(),
+    judul: z.string().optional(),
+    deskripsi: z.string().optional(),
+  }).optional(),
   daftar: z.array(EkstrakurikulerItemSchema),
 });
 
@@ -113,6 +153,7 @@ export const SpmbSchema = z.object({
   banner: z.object({
     label: z.string().optional(),
     teks: z.string().optional(),
+    cta_teks: z.string().optional(),
   }).optional(),
   popup: z.object({
     poster: z.string().optional(),
