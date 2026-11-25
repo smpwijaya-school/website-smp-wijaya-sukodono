@@ -22,6 +22,7 @@ function formatDate(date: Date) {
 
 const hero = pengaturan.hero || {};
 const heroFoto = hero.foto?.trim() || '/images/hero/hero-home.webp';
+const heroBadge = hero.badge?.trim() || `${pengaturan.akreditasi} • NPSN ${pengaturan.npsn}`;
 const heroDeskripsi = hero.deskripsi?.trim() || 'Enam dekade mengabdi mencetak insan berakhlak mulia, unggul akademik, dan berprestasi di Pekarungan, Sukodono.';
 const heroTombolUtamaTeks = hero.tombol_utama_teks?.trim() || (spmb.aktif ? `Informasi SPMB ${spmb.tahun_ajaran}` : `Informasi SPMB`);
 const heroTombolUtamaLink = hero.tombol_utama_link?.trim() || '/spmb';
@@ -60,6 +61,12 @@ const programs = (pengaturan.program_unggulan && pengaturan.program_unggulan.len
     <div class="absolute inset-0 bg-gradient-to-b from-ocean-950/85 via-ocean-950/80 to-ocean-950/95"></div>
 
     <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 text-center">
+      {heroBadge && (
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ocean-900/80 border border-wijayaCyan-400/30 text-xs font-mono text-wijayaCyan-300 uppercase tracking-wider mb-5 animate-hero-badge backdrop-blur-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-candiGold-400"></span>
+          <span>{heroBadge}</span>
+        </div>
+      )}
       {hero.judul_sorot ? (
         <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.16] text-white animate-hero-title">
           {hero.judul || 'Membangun Generasi'}{' '}
@@ -110,7 +117,7 @@ const programs = (pengaturan.program_unggulan && pengaturan.program_unggulan.len
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-12 gap-10 items-center">
         <div class="lg:col-span-4 reveal">
-          <div class="rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 shadow-sm card-interactive">
+          <div class="max-w-xs mx-auto lg:max-w-none rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 shadow-sm card-interactive">
             <div class={`aspect-[4/5] bg-gradient-to-br from-ocean-950 to-ocean-900 flex flex-col items-center justify-center text-center relative overflow-hidden group ${pengaturan.sambutan_kepsek.foto ? '' : 'p-6'}`}>
               {pengaturan.sambutan_kepsek.foto ? (
                 <img src={pengaturan.sambutan_kepsek.foto} alt={pengaturan.sambutan_kepsek.nama} class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105" />
@@ -201,9 +208,9 @@ const programs = (pengaturan.program_unggulan && pengaturan.program_unggulan.len
             const foto = g.foto || (g.nama === pengaturan.sambutan_kepsek?.nama ? pengaturan.sambutan_kepsek?.foto : undefined);
             return (
               <div
-                class={`bg-white rounded-xl border border-cerulean-600/30 ring-1 ring-cerulean-600/10 overflow-hidden card-interactive transition flex flex-col group reveal delay-${(idx + 1) * 100}`}
+                class={`max-w-xs mx-auto sm:max-w-none w-full bg-white rounded-xl border border-cerulean-600/30 ring-1 ring-cerulean-600/10 overflow-hidden card-interactive transition flex flex-col group reveal delay-${(idx + 1) * 100}`}
               >
-                <div class={`aspect-[4/5] w-full overflow-hidden relative ${foto ? 'bg-slate-100' : 'bg-ocean-950 text-candiGold-400'} flex items-center justify-center`}>
+                <div class={`aspect-square w-full overflow-hidden relative ${foto ? 'bg-slate-100' : 'bg-ocean-950 text-candiGold-400'} flex items-center justify-center`}>
                   {foto ? (
                     <>
                       <img

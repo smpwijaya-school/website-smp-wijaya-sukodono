@@ -66,7 +66,7 @@ const heroFoto = pengaturan.hero_pages?.guru || '/images/hero/hero-guru.webp';
     </div>
 
     <!-- Cards Grid -->
-    <div id="teachers-grid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div id="teachers-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
       {allGuru.map((g, idx) => {
         const isLeader = g.bidang === 'Pimpinan';
         return (
@@ -76,7 +76,7 @@ const heroFoto = pengaturan.hero_pages?.guru || '/images/hero/hero-guru.webp';
             data-name={g.nama.toLowerCase()}
             data-role={g.jabatan.toLowerCase()}
           >
-            <div class={`aspect-[4/5] w-full overflow-hidden relative ${g.foto ? 'bg-slate-100' : (isLeader ? 'bg-ocean-950 text-candiGold-400' : 'bg-wijayaCyan-50 text-cerulean-600')} flex items-center justify-center`}>
+            <div class={`aspect-square w-full overflow-hidden relative ${g.foto ? 'bg-slate-100' : (isLeader ? 'bg-ocean-950 text-candiGold-400' : 'bg-wijayaCyan-50 text-cerulean-600')} flex items-center justify-center`}>
               {g.foto ? (
                 <>
                   <img

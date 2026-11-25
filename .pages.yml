@@ -122,6 +122,7 @@ content:
         type: object
         fields:
           - { name: foto, label: "Foto Latar Belakang Hero (Upload format WebP/JPG, 16:9, maks 1 MB)", type: image }
+          - { name: badge, label: "Teks Badge Hero (Opsional, contoh: Terakreditasi B • NPSN 20540036)", type: string }
           - { name: judul, label: "Judul Utama Hero (Awal)", type: string }
           - { name: judul_sorot, label: "Teks Sorotan Emas (Opsional, contoh: Berilmu, Berkarakter,)", type: string }
           - { name: judul_akhiran, label: "Teks Lanjutan Judul (Opsional, contoh: & Berprestasi)", type: string }

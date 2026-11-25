@@ -4,16 +4,16 @@ import { spmb, pengaturan } from '../utils/data';
 
 {spmb.aktif && (
   <div id="top-spmb-bar" class="bg-ocean-950 text-white border-b border-cerulean-600/30">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm">
-      <div class="flex items-center gap-2.5">
-        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-candiGold-400 text-ocean-950 uppercase tracking-wide">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-4 text-xs sm:text-sm">
+      <div class="flex items-start sm:items-center gap-2 sm:gap-2.5">
+        <span class="shrink-0 whitespace-nowrap inline-flex items-center px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-mono font-semibold bg-candiGold-400 text-ocean-950 uppercase tracking-wide mt-0.5 sm:mt-0">
           {spmb.banner?.label || `SPMB ${spmb.tahun_ajaran}`}
         </span>
-        <span class="text-sky-100">
+        <span class="text-sky-100 leading-snug">
           {spmb.banner?.teks || `Penerimaan Murid Baru ${pengaturan.nama_sekolah} telah dibuka — Kuota terbatas.`}
         </span>
       </div>
-      <a href="/spmb" class="font-semibold text-candiGold-400 hover:text-yellow-300 underline underline-offset-4 transition">
+      <a href="/spmb" class="shrink-0 whitespace-nowrap self-end sm:self-auto font-semibold text-candiGold-400 hover:text-yellow-300 underline underline-offset-4 transition">
         Lihat Syarat &amp; Alur &rarr;
       </a>
     </div>
