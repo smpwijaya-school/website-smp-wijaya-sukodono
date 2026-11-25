@@ -1,7 +1,7 @@
 ---
 title: Profil & Identitas SMP Wijaya Sukodono
 deskripsi: Mengenal sejarah pengabdian, identitas resmi Kemdikbud, visi-misi pendidikan, serta makna filosofis lambang sekolah.
-hero_foto: /images/hero/hero-profil.webp
+hero_foto: ""
 sejarah_judul: Enam Dekade Mencerdaskan Putra-Putri Sukodono
 visi: Terwujudnya Peserta Didik yang Beriman, Berakhlak Mulia, Unggul dalam Prestasi, Terampil, dan Berwawasan Lingkungan.
 misi:

@@ -213,7 +213,7 @@ content:
     fields:
       - { name: title, label: "Judul Halaman", type: string }
       - { name: deskripsi, label: "Deskripsi Singkat Hero", type: text }
-      - { name: hero_foto, label: "Foto Latar Hero (16:9)", type: image }
+      - { name: hero_foto, label: "Foto Latar Hero Khusus (Opsional — kosongkan untuk ikut Pengaturan)", type: image }
       - { name: sejarah_judul, label: "Subjudul Sejarah Sekolah", type: string }
       - { name: visi, label: "Visi Sekolah", type: text }
       - { name: misi, label: "Daftar Misi", type: string, list: true }

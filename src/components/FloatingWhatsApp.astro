@@ -1,0 +1,44 @@
+---
+import { pengaturan, spmb } from '../utils/data';
+
+interface Props {
+  activeNav?: string;
+}
+
+const { activeNav = 'home' } = Astro.props;
+
+const isSpmbPage = activeNav === 'spmb' || activeNav === 'ppdb';
+const rawWa = isSpmbPage
+  ? (spmb.pendaftaran?.kontak_wa || pengaturan.kontak?.whatsapp || '')
+  : (pengaturan.kontak?.whatsapp || '');
+const cleanWa = rawWa.replace(/\D/g, '').replace(/^0/, '62');
+
+const defaultMessage = isSpmbPage
+  ? (spmb.pendaftaran?.pesan_wa || `Halo Panitia SPMB ${pengaturan.nama_sekolah}, saya ingin bertanya mengenai pendaftaran siswa baru.`)
+  : `Halo Tata Usaha ${pengaturan.nama_sekolah}, saya ingin menanyakan informasi sekolah.`;
+
+const waUrl = cleanWa ? `https://wa.me/${cleanWa}?text=${encodeURIComponent(defaultMessage)}` : '';
+const tooltipLabel = isSpmbPage ? 'Tanya Panitia SPMB' : 'Chat WhatsApp TU';
+---
+
+{waUrl && (
+  <div class="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 group flex items-center gap-2.5">
+    <span
+      class="hidden sm:inline-flex items-center px-3 py-1.5 rounded-lg bg-ocean-950/95 text-white text-xs font-semibold shadow-lg border border-white/10 opacity-0 translate-x-2 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 group-focus-within:opacity-100 group-focus-within:translate-x-0 transition-all duration-200 whitespace-nowrap"
+      aria-hidden="true"
+    >
+      {tooltipLabel}
+    </span>
+    <a
+      href={waUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${tooltipLabel} via WhatsApp`}
+      class="w-14 h-14 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-950/25 hover:shadow-xl flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+    >
+      <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.766.469 3.484 1.344 5L2 22l5.156-1.344c1.469.797 3.141 1.234 4.875 1.234 5.516 0 9.969-4.453 9.969-9.969S17.547 2 12.031 2zm5.813 14.125c-.25.703-1.438 1.344-2 1.422-.516.078-1.172.109-1.891-.125-.438-.141-1-.328-1.719-.641-3.016-1.313-4.984-4.359-5.141-4.563-.141-.203-1.234-1.641-1.234-3.125s.781-2.219 1.063-2.516c.281-.297.609-.375.813-.375s.406 0 .578.016c.188.016.438-.078.688.531.25.609.859 2.094.938 2.25.078.156.125.344.031.547-.094.203-.141.328-.297.5-.156.172-.313.391-.453.516-.156.141-.313.297-.141.594.172.297.781 1.281 1.672 2.078 1.156 1.016 2.125 1.328 2.422 1.484.297.141.469.125.641-.078.172-.203.75-.875.953-1.172.203-.297.406-.25.672-.156.266.094 1.719.813 2.016.953.297.156.484.219.563.344.078.141.078.797-.172 1.5z" />
+      </svg>
+    </a>
+  </div>
+)}

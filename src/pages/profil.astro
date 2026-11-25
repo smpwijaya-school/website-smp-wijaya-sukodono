@@ -7,7 +7,14 @@ const { frontmatter, Content } = profilData;
 
 const pageTitle = frontmatter.title?.trim() || `Profil & Identitas ${pengaturan.nama_sekolah}`;
 const pageDesc = frontmatter.deskripsi?.trim() || "Mengenal sejarah pengabdian, identitas resmi Kemdikbud, visi-misi pendidikan, serta makna filosofis lambang sekolah.";
-const heroFoto = frontmatter.hero_foto?.trim() || pengaturan.hero_pages?.profil || '/images/hero/hero-profil.webp';
+const defaultHeroProfil = '/images/hero/hero-profil.webp';
+const frontmatterFoto = typeof frontmatter.hero_foto === 'string' ? frontmatter.hero_foto.trim() : '';
+const pengaturanFoto = typeof pengaturan.hero_pages?.profil === 'string' ? pengaturan.hero_pages.profil.trim() : '';
+const heroFoto =
+  (frontmatterFoto && frontmatterFoto !== defaultHeroProfil ? frontmatterFoto : '') ||
+  pengaturanFoto ||
+  frontmatterFoto ||
+  defaultHeroProfil;
 const sejarahJudul = frontmatter.sejarah_judul?.trim() || "Enam Dekade Mencerdaskan Putra-Putri Sukodono";
 
 const visi = frontmatter.visi || "Terwujudnya Peserta Didik yang Beriman, Berakhlak Mulia, Unggul dalam Prestasi, Terampil, dan Berwawasan Lingkungan.";

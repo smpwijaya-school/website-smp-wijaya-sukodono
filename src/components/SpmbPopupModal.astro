@@ -1,0 +1,230 @@
+---
+import { spmb, pengaturan } from '../utils/data';
+
+interface Props {
+  activeNav?: string;
+}
+
+const { activeNav = 'home' } = Astro.props;
+
+const shouldShowPopup = spmb.aktif && activeNav !== 'spmb' && activeNav !== 'ppdb';
+
+const rawWa = spmb.pendaftaran?.kontak_wa || pengaturan.kontak?.whatsapp || '';
+const cleanWa = rawWa.replace(/\D/g, '').replace(/^0/, '62');
+const waMessage = encodeURIComponent(
+  spmb.pendaftaran?.pesan_wa || `Halo Panitia SPMB ${pengaturan.nama_sekolah}, saya ingin bertanya mengenai pendaftaran siswa baru.`
+);
+const waUrl = cleanWa ? `https://wa.me/${cleanWa}?text=${waMessage}` : '';
+
+const heroFoto = spmb.hero?.foto?.trim() || '/images/hero/hero-ppdb.webp';
+const jadwalPreview = (spmb.jadwal || []).slice(0, 3);
+const storageKey = `smp_wijaya_spmb_popup_dismissed_${spmb.tahun_ajaran}`;
+---
+
+{shouldShowPopup && (
+  <div
+    id="spmb-popup-modal"
+    data-storage-key={storageKey}
+    class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-200"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="spmb-popup-title"
+  >
+    <div
+      id="spmb-popup-container"
+      class="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl relative transform scale-95 opacity-0 transition-all duration-200 ease-out max-h-[92vh] flex flex-col border border-slate-200"
+    >
+      <!-- Header Visual -->
+      <div class="relative bg-ocean-950 text-white px-6 py-7 overflow-hidden shrink-0">
+        <img
+          src={heroFoto}
+          alt={`Informasi SPMB ${spmb.tahun_ajaran} ${pengaturan.nama_sekolah}`}
+          class="absolute inset-0 w-full h-full object-cover object-center opacity-40"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="absolute inset-0 bg-gradient-to-br from-ocean-950/95 via-ocean-950/85 to-ocean-900/80"></div>
+
+        <button
+          id="spmb-popup-close-x"
+          type="button"
+          aria-label="Tutup pengumuman SPMB"
+          class="absolute top-3.5 right-3.5 z-20 w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center backdrop-blur-sm transition focus:outline-none focus:ring-2 focus:ring-candiGold-400"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div class="relative z-10 pr-10 space-y-2.5">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-candiGold-400 text-ocean-950 font-mono text-[11px] font-bold uppercase tracking-wide shadow-sm">
+              STATUS: DIBUKA
+            </span>
+            <span class="px-2.5 py-0.5 rounded-full bg-white/15 border border-white/20 text-sky-100 font-mono text-[11px] font-semibold">
+              {spmb.banner?.label || `SPMB ${spmb.tahun_ajaran}`}
+            </span>
+          </div>
+          <h2 id="spmb-popup-title" class="text-xl sm:text-2xl font-extrabold leading-snug tracking-tight text-white">
+            {spmb.hero?.judul || `Penerimaan Murid Baru (SPMB) ${spmb.tahun_ajaran}`}
+          </h2>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="p-6 overflow-y-auto space-y-4">
+        <p class="text-sm text-slate-700 leading-relaxed">
+          {spmb.banner?.teks || spmb.hero?.deskripsi || `Penerimaan Murid Baru ${pengaturan.nama_sekolah} Tahun Ajaran ${spmb.tahun_ajaran} telah dibuka.`}
+        </p>
+
+        {jadwalPreview.length > 0 && (
+          <div class="space-y-2">
+            <div class="text-[11px] font-mono font-bold uppercase tracking-wider text-cerulean-700">
+              Jadwal &amp; Gelombang Pendaftaran
+            </div>
+            <div class="space-y-2">
+              {jadwalPreview.map((item) => (
+                <div class="px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2 text-xs">
+                  <div class="flex items-center gap-2 min-w-0">
+                    {item.badge && (
+                      <span class="px-2 py-0.5 rounded bg-wijayaCyan-50 text-cerulean-700 border border-cerulean-200 font-mono text-[10px] font-semibold shrink-0">
+                        {item.badge}
+                      </span>
+                    )}
+                    <span class="font-semibold text-ocean-950 truncate">{item.gelombang}</span>
+                  </div>
+                  <span class="font-mono text-cerulean-700 font-semibold shrink-0">{item.waktu}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Actions -->
+        <div class="pt-2 flex flex-col sm:flex-row gap-2.5">
+          <a
+            id="spmb-popup-cta"
+            href="/spmb"
+            class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-candiGold-400 hover:bg-yellow-300 text-ocean-950 text-sm font-bold shadow-sm transition active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-cerulean-600 focus:ring-offset-2"
+          >
+            <span>Lihat Info &amp; Daftar SPMB</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+          {waUrl && (
+            <a
+              href={waUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-ocean-950 text-sm font-semibold transition active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-cerulean-600 focus:ring-offset-2"
+            >
+              <svg class="w-4 h-4 text-emerald-600 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.766.469 3.484 1.344 5L2 22l5.156-1.344c1.469.797 3.141 1.234 4.875 1.234 5.516 0 9.969-4.453 9.969-9.969S17.547 2 12.031 2zm5.813 14.125c-.25.703-1.438 1.344-2 1.422-.516.078-1.172.109-1.891-.125-.438-.141-1-.328-1.719-.641-3.016-1.313-4.984-4.359-5.141-4.563-.141-.203-1.234-1.641-1.234-3.125s.781-2.219 1.063-2.516c.281-.297.609-.375.813-.375s.406 0 .578.016c.188.016.438-.078.688.531.25.609.859 2.094.938 2.25.078.156.125.344.031.547-.094.203-.141.328-.297.5-.156.172-.313.391-.453.516-.156.141-.313.297-.141.594.172.297.781 1.281 1.672 2.078 1.156 1.016 2.125 1.328 2.422 1.484.297.141.469.125.641-.078.172-.203.75-.875.953-1.172.203-.297.406-.25.672-.156.266.094 1.719.813 2.016.953.297.156.484.219.563.344.078.141.078.797-.172 1.5z" />
+              </svg>
+              <span>Tanya WA</span>
+            </a>
+          )}
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="px-6 py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 shrink-0">
+        <span>{pengaturan.nama_sekolah}</span>
+        <button
+          id="spmb-popup-close-btn"
+          type="button"
+          class="font-semibold text-slate-600 hover:text-ocean-950 px-2 py-1 rounded transition focus:outline-none focus:ring-2 focus:ring-cerulean-600"
+        >
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function initSpmbPopupModal() {
+      const popup = document.getElementById('spmb-popup-modal');
+      const container = document.getElementById('spmb-popup-container');
+      const closeXBtn = document.getElementById('spmb-popup-close-x');
+      const closeBtn = document.getElementById('spmb-popup-close-btn');
+      const ctaLink = document.getElementById('spmb-popup-cta');
+      if (!popup || !container) return;
+
+      const storageKey = popup.dataset.storageKey || 'smp_wijaya_spmb_popup_dismissed';
+      let lastFocused = null;
+
+      function isDismissed() {
+        try {
+          return window.sessionStorage.getItem(storageKey) === '1';
+        } catch {
+          return false;
+        }
+      }
+
+      function markDismissed() {
+        try {
+          window.sessionStorage.setItem(storageKey, '1');
+        } catch {
+          // Ignore storage errors in strict privacy mode
+        }
+      }
+
+      function openPopup() {
+        lastFocused = document.activeElement;
+        document.body.classList.add('overflow-hidden');
+        popup.classList.remove('hidden');
+        requestAnimationFrame(() => {
+          popup.classList.remove('opacity-0');
+          container.classList.remove('scale-95', 'opacity-0');
+          ctaLink?.focus();
+        });
+      }
+
+      function closePopup() {
+        markDismissed();
+        popup.classList.add('opacity-0');
+        container.classList.add('scale-95', 'opacity-0');
+        document.body.classList.remove('overflow-hidden');
+        setTimeout(() => {
+          popup.classList.add('hidden');
+          if (lastFocused && typeof lastFocused.focus === 'function') {
+            lastFocused.focus();
+          }
+        }, 200);
+      }
+
+      if (!isDismissed()) {
+        const showDelay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 400;
+        setTimeout(openPopup, showDelay);
+      }
+
+      closeXBtn?.addEventListener('click', closePopup);
+      closeBtn?.addEventListener('click', closePopup);
+      ctaLink?.addEventListener('click', markDismissed);
+
+      popup.addEventListener('click', (e) => {
+        if (!container.contains(e.target)) closePopup();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (popup.classList.contains('hidden')) return;
+        if (e.key === 'Escape') {
+          closePopup();
+        } else if (e.key === 'Tab') {
+          const focusable = container.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+          if (!focusable.length) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      });
+    })();
+  </script>
+)}
