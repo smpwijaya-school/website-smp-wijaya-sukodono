@@ -62,9 +62,8 @@ const programs = (pengaturan.program_unggulan && pengaturan.program_unggulan.len
 
     <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 text-center">
       {heroBadge && (
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ocean-900/80 border border-wijayaCyan-400/30 text-xs font-mono text-wijayaCyan-300 uppercase tracking-wider mb-5 animate-hero-badge backdrop-blur-sm">
-          <span class="w-1.5 h-1.5 rounded-full bg-candiGold-400"></span>
-          <span>{heroBadge}</span>
+        <div class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-ocean-900/80 border border-wijayaCyan-400/30 text-xs font-mono text-wijayaCyan-300 uppercase tracking-wider mb-5 animate-hero-badge backdrop-blur-sm">
+          {heroBadge}
         </div>
       )}
       {hero.judul_sorot ? (
