@@ -71,25 +71,38 @@ const heroFoto = pengaturan.hero_pages?.guru || '/images/hero/hero-guru.webp';
         const isLeader = g.bidang === 'Pimpinan';
         return (
           <div
-            class={`teacher-card bg-white rounded-xl border ${isLeader ? 'border-cerulean-600/40 ring-1 ring-cerulean-600/10' : 'border-slate-200'} p-5 text-center card-interactive transition reveal delay-${(idx % 4 + 1) * 75}`}
+            class={`teacher-card bg-white rounded-xl border ${isLeader ? 'border-cerulean-600/40 ring-1 ring-cerulean-600/10' : 'border-slate-200'} overflow-hidden card-interactive transition flex flex-col group reveal delay-${(idx % 4 + 1) * 75}`}
             data-bidang={g.bidang}
             data-name={g.nama.toLowerCase()}
             data-role={g.jabatan.toLowerCase()}
           >
-            {g.foto ? (
-              <div class="w-24 h-24 mx-auto rounded-2xl overflow-hidden mb-4 border-2 border-slate-200 shadow-sm bg-slate-100 flex items-center justify-center">
-                <img src={g.foto} alt={g.nama} class="w-full h-full object-cover" onerror="this.style.display='none';" />
-              </div>
-            ) : (
-              <div class={`w-24 h-24 mx-auto rounded-2xl ${isLeader ? 'bg-ocean-950 text-candiGold-400' : 'bg-wijayaCyan-50 text-cerulean-600'} flex items-center justify-center text-2xl font-extrabold mb-4 shadow-sm`}>
-                {g.inisial || g.nama.slice(0, 2).toUpperCase()}
-              </div>
-            )}
-            <span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 font-mono text-[11px] font-semibold mb-2">
-              {g.bidang}
-            </span>
-            <h3 class="font-bold text-ocean-950 text-base">{g.nama}</h3>
-            <p class="text-xs sm:text-sm text-slate-600 mt-1">{g.jabatan}</p>
+            <div class={`aspect-[4/5] w-full overflow-hidden relative ${g.foto ? 'bg-slate-100' : (isLeader ? 'bg-ocean-950 text-candiGold-400' : 'bg-wijayaCyan-50 text-cerulean-600')} flex items-center justify-center`}>
+              {g.foto ? (
+                <>
+                  <img
+                    src={g.foto}
+                    alt={g.nama}
+                    class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    onerror="this.style.display='none';this.nextElementSibling?.classList.remove('hidden');"
+                  />
+                  <span class={`hidden text-4xl font-extrabold tracking-tight ${isLeader ? 'text-candiGold-400' : 'text-cerulean-600'}`}>
+                    {g.inisial || g.nama.slice(0, 2).toUpperCase()}
+                  </span>
+                </>
+              ) : (
+                <span class="text-4xl font-extrabold tracking-tight">
+                  {g.inisial || g.nama.slice(0, 2).toUpperCase()}
+                </span>
+              )}
+            </div>
+            <div class="p-4 sm:p-5 text-center flex-1 flex flex-col items-center justify-center">
+              <span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 font-mono text-[11px] font-semibold mb-2">
+                {g.bidang}
+              </span>
+              <h3 class="font-bold text-ocean-950 text-base leading-snug group-hover:text-cerulean-600 transition">{g.nama}</h3>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1">{g.jabatan}</p>
+            </div>
           </div>
         );
       })}

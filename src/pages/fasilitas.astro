@@ -54,34 +54,52 @@ const heroFoto = pengaturan.hero_pages?.fasilitas || '/images/hero/hero-fasilita
 
     <!-- Grid Cards -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="facilities-grid">
-      {allFacilities.map((f, idx) => (
-        <div
-          class={`facility-card bg-white rounded-xl border border-slate-200 overflow-hidden card-interactive transition flex flex-col reveal delay-${(idx % 3 + 1) * 75}`}
-          data-cat={f.kategori}
-        >
-          <div class="aspect-[4/3] bg-gradient-to-br from-ocean-950 to-ocean-900 p-5 flex flex-col justify-between relative overflow-hidden">
-            {f.foto && (
-              <img src={f.foto} alt={f.nama} class="absolute inset-0 w-full h-full object-cover transition duration-300 hover:scale-105" onerror="this.style.display='none';" />
-              <div class="absolute inset-0 bg-gradient-to-t from-ocean-950/90 via-ocean-950/30 to-ocean-950/40"></div>
-            )}
-            <span class="relative z-10 self-start px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-sm text-sky-100 font-mono text-[11px] font-semibold">{f.kategori}</span>
-            <div class="relative z-10 flex items-center justify-between gap-2">
-              <span class="text-white font-bold text-base drop-shadow-md truncate">{f.nama}</span>
-              <button
-                type="button"
-                data-facility={JSON.stringify(f)}
-                class="open-facility-modal-btn px-3 py-1.5 rounded-lg bg-candiGold-400 hover:bg-yellow-300 text-ocean-950 text-xs font-bold transition shrink-0 shadow-md"
-              >
-                Lihat Foto
-              </button>
+      {allFacilities.map((f, idx) => {
+        const totalPhotos = (f.foto ? 1 : 0) + (Array.isArray(f.galeri) ? f.galeri.length : 0);
+        return (
+          <div
+            class={`facility-card bg-white rounded-xl border border-slate-200 overflow-hidden card-interactive transition flex flex-col reveal delay-${(idx % 3 + 1) * 75} group`}
+            data-cat={f.kategori}
+          >
+            <div class="aspect-[16/10] bg-gradient-to-br from-ocean-950 to-ocean-900 relative overflow-hidden">
+              {f.foto ? (
+                <>
+                  <img src={f.foto} alt={f.nama} class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" onerror="this.style.display='none';" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-ocean-950/90 via-ocean-950/20 to-black/30"></div>
+                </>
+              ) : (
+                <div class="absolute inset-0 flex items-center justify-center text-white/40">
+                  <svg class="w-16 h-16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                  </svg>
+                </div>
+              )}
+              <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 z-10">
+                <span class="px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white font-mono text-[11px] font-semibold">{f.kategori}</span>
+              </div>
+              <div class="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-2 z-10">
+                <span class="text-white font-bold text-sm sm:text-base leading-tight drop-shadow truncate pr-2">{f.nama}</span>
+                <button
+                  type="button"
+                  data-facility={JSON.stringify(f)}
+                  class="open-facility-modal-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-candiGold-400 hover:bg-yellow-300 text-ocean-950 text-xs font-bold transition shrink-0 shadow-md transform active:scale-95"
+                  aria-label={`Lihat foto ${f.nama}`}
+                >
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
+                  </svg>
+                  <span>{totalPhotos > 1 ? `${totalPhotos} Foto` : 'Lihat Foto'}</span>
+                </button>
+              </div>
+            </div>
+            <div class="p-5 flex-1">
+              <h3 class="font-bold text-ocean-950 text-base">{f.nama}</h3>
+              <p class="text-sm text-slate-600 mt-1.5 leading-relaxed">{f.deskripsi}</p>
             </div>
           </div>
-          <div class="p-5 flex-1">
-            <h3 class="font-bold text-ocean-950 text-base">{f.nama}</h3>
-            <p class="text-sm text-slate-600 mt-1.5 leading-relaxed">{f.deskripsi}</p>
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   </div>
 
