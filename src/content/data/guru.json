@@ -24,36 +24,6 @@
       "bidang": "Pimpinan",
       "inisial": "KS",
       "foto": "/images/uploads/1000092639.jpg"
-    },
-    {
-      "nama": "Guru Bahasa Indonesia",
-      "jabatan": "Mata Pelajaran Bahasa Indonesia",
-      "bidang": "Guru Mapel",
-      "inisial": "BI"
-    },
-    {
-      "nama": "Guru Matematika",
-      "jabatan": "Mata Pelajaran Matematika",
-      "bidang": "Guru Mapel",
-      "inisial": "MT"
-    },
-    {
-      "nama": "Guru IPA Terpadu",
-      "jabatan": "Mata Pelajaran IPA",
-      "bidang": "Guru Mapel",
-      "inisial": "IP"
-    },
-    {
-      "nama": "Pembina Olahraga & Voli",
-      "jabatan": "Guru PJOK & Pembina Ekskul",
-      "bidang": "Guru Mapel",
-      "inisial": "PJ"
-    },
-    {
-      "nama": "Kepala Tata Usaha",
-      "jabatan": "Layanan Administrasi & SPMB",
-      "bidang": "Staf TU",
-      "inisial": "TU"
     }
   ]
 }
