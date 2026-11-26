@@ -18,12 +18,7 @@
       "jadwal": "Sabtu, 14.30 – 17.00 WIB",
       "lokasi": "Halaman Utama & Lapangan Sekolah",
       "pembina": "Pelatih Marching Band & Pembina Kesiswaan",
-      "badge": "Unggulan",
-      "foto": "/images/ekskul/marching-band-1.webp",
-      "galeri": [
-        "/images/ekskul/marching-band-2.webp",
-        "/images/ekskul/marching-band-3.webp"
-      ]
+      "badge": "Unggulan"
     },
     {
       "id": 2,
@@ -34,11 +29,7 @@
       "jadwal": "Selasa & Kamis, 15.30 – 17.30 WIB",
       "lokasi": "Lapangan Olahraga SMP Wijaya",
       "pembina": "Guru PJOK & Pelatih Klub Voli",
-      "badge": "Unggulan",
-      "foto": "/images/ekskul/voli-1.webp",
-      "galeri": [
-        "/images/ekskul/voli-2.webp"
-      ]
+      "badge": "Unggulan"
     },
     {
       "id": 3,
@@ -49,11 +40,7 @@
       "jadwal": "Jumat, 13.30 – 15.30 WIB",
       "lokasi": "Kampus SMP Wijaya Sukodono",
       "pembina": "Pembina Gugus Depan Pramuka",
-      "badge": "Wajib Kelas VII",
-      "foto": "/images/ekskul/pramuka-1.webp",
-      "galeri": [
-        "/images/ekskul/pramuka-2.webp"
-      ]
+      "badge": "Wajib Kelas VII"
     },
     {
       "id": 4,
@@ -64,11 +51,7 @@
       "jadwal": "Rabu & Sabtu, 15.00 – 17.00 WIB",
       "lokasi": "Halaman Upacara Sekolah",
       "pembina": "Instruktur Paskibra Sekolah",
-      "badge": "Unggulan",
-      "foto": "/images/ekskul/paskibra-1.webp",
-      "galeri": [
-        "/images/ekskul/paskibra-2.webp"
-      ]
+      "badge": "Unggulan"
     },
     {
       "id": 5,
@@ -78,11 +61,7 @@
       "prestasi": "Penampil Utama Acara Wisuda Purna Widya & Gebyar Seni Pelajar",
       "jadwal": "Senin, 15.00 – 16.30 WIB",
       "lokasi": "Aula & Ruang Kesenian",
-      "pembina": "Guru Seni Budaya",
-      "foto": "/images/ekskul/tari-1.webp",
-      "galeri": [
-        "/images/ekskul/tari-2.webp"
-      ]
+      "pembina": "Guru Seni Budaya"
     },
     {
       "id": 6,
@@ -92,11 +71,7 @@
       "prestasi": "Pengisi Tetap Peringatan Hari Besar Islam (PHBI) & Safari Maulid",
       "jadwal": "Kamis, 15.00 – 16.30 WIB",
       "lokasi": "Musholla Sekolah",
-      "pembina": "Guru Pendidikan Agama Islam (PAI)",
-      "foto": "/images/ekskul/hadrah-1.webp",
-      "galeri": [
-        "/images/ekskul/hadrah-2.webp"
-      ]
+      "pembina": "Guru Pendidikan Agama Islam (PAI)"
     },
     {
       "id": 7,
@@ -106,9 +81,7 @@
       "prestasi": "Peserta Turnamen Futsal Pelajar Tingkat Kabupaten",
       "jadwal": "Rabu, 15.30 – 17.00 WIB",
       "lokasi": "Lapangan Olahraga Sekolah",
-      "pembina": "Pelatih Futsal & Staf Kesiswaan",
-      "foto": "/images/ekskul/futsal-1.webp",
-      "galeri": []
+      "pembina": "Pelatih Futsal & Staf Kesiswaan"
     },
     {
       "id": 8,
@@ -118,9 +91,7 @@
       "prestasi": "Penerbit Majalah Dinding Sekolah & Kurator Mading Literasi P5",
       "jadwal": "Selasa, 14.30 – 16.00 WIB",
       "lokasi": "Perpustakaan Sekolah",
-      "pembina": "Guru Bahasa Indonesia",
-      "foto": "/images/ekskul/literasi-1.webp",
-      "galeri": []
+      "pembina": "Guru Bahasa Indonesia"
     }
   ]
 }
